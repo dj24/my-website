@@ -1,6 +1,137 @@
 import { Component, createSignal, onCleanup, onMount } from "solid-js";
 import { scroll } from "motion";
 
+const fragmentShaderSource = `
+    precision mediump float;
+    uniform float time;
+    uniform float uRotation;
+    uniform vec3 uResolution;
+    uniform sampler2D noise;
+      
+    mat3 lookAt(in vec3 eye, in vec3 tar, in float r){
+        vec3 cw = normalize(tar - eye);// camera w
+        vec3 cp = vec3(sin(r), cos(r), 0.);// camera up
+        vec3 cu = normalize(cross(cw, cp));// camera u
+        vec3 cv = normalize(cross(cu, cw));// camera v
+        return mat3(cu, cv, cw);
+    }
+    
+    float sdTriPrism( vec3 p, vec2 h )
+    {
+      vec3 q = abs(p);
+      return max(q.z-h.y,max(q.x*0.866025+p.y*0.5,-p.y)-h.x*0.5);
+    }
+
+    float sdBox( vec3 p, vec3 b )
+    {
+      vec3 q = abs(p) - b;
+      return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0);
+    }
+
+    float sdSphere( vec3 p, float s )
+    {
+      return length(p)-s;
+    }
+
+    float sdCappedCylinder( vec3 p, float h, float r )
+    {
+      vec2 d = abs(vec2(length(p.xz),p.y)) - vec2(r,h);
+      return min(max(d.x,d.y),0.0) + length(max(d,0.0));
+    }
+
+    vec2 opSmoothUnion( vec2 d1, vec2 d2, float k ) {
+      float h = clamp( 0.5 + 0.5*(d2.x-d1.x)/k, 0.0, 1.0 );
+      return mix( d2, d1, h ) - k*h*(1.0-h); 
+    }
+    vec2 opUnion( vec2 d1, vec2 d2 ) { return (d1.x<d2.x) ? d1 : d2; }
+    vec2 opSubtraction( vec2 d1, vec2 d2 ) { return (-d1.x > d2.x) ? -d1 : d2; }
+    float opIntersection( float d1, float d2 ) { return max(d1,d2); }
+    
+    vec2 map(vec3 pos)
+    {
+      vec2 res = vec2(100000.0, 0.0);
+      res = opUnion( 
+        res, 
+        vec2( 
+          sdBox(pos, vec3(20.0, 10.0, 20.0)),
+          26.9
+        )
+      );
+      res = opSmoothUnion( 
+        vec2( 
+          sdSphere(pos + vec3(0.0, sin(time * 0.001) * 20.0, 0.0), 15.0),
+          26.9
+        ),
+        res,
+        5.0
+      );
+      return res;
+    }
+    
+    #define CAM_DISTANCE 100.0
+    #define BACKGROUND_COLOUR vec3(0.98, 0.929, 0.804)
+    #define MAX_RAY_DISTANCE 200
+    
+    vec3 calcNormal(vec3 p )
+    {
+        const float h = 0.0001;
+        const vec2 k = vec2(1.0,-1.0);
+        return normalize( k.xyy*map( p + k.xyy*h ).x + 
+                          k.yyx*map( p + k.yyx*h ).x + 
+                          k.yxy*map( p + k.yxy*h ).x + 
+                          k.xxx*map( p + k.xxx*h ).x );
+    }
+
+    vec4 rayMarch(vec2 p){
+      float rotate = time * 0.00025; 
+      vec3 cam = vec3(sin(rotate) * CAM_DISTANCE, CAM_DISTANCE * (uRotation + 0.5) * 0.5,cos(rotate) * CAM_DISTANCE);
+      vec3 ro = cam;              
+      vec3 rd = lookAt(cam, vec3(0.0), 0.)*normalize(vec3(p, 1.0));
+      vec2 res = vec2(-1.0,-1.0);
+      int j = 0;
+      float t = 0.0;
+      for(int i = 0; i < MAX_RAY_DISTANCE; i++)
+      {
+        vec2 h = map( ro+rd*t );
+        if( abs(h.x)<(0.0001*t) )
+        { 
+            res = vec2(t,h.y); 
+            break;
+        }
+        t += h.x;
+        j++;
+      }
+      t = res.x;
+	    float m = res.y;
+      vec3 col = 0.2 + 0.2*sin( m*2.0 + vec3(0.0,1.0,2.0) );
+      vec3 pos = ro + t*rd;
+      vec3 nor = (m<1.5) ? vec3(0.0,1.0,0.0) : calcNormal( pos );
+      vec3 ref = reflect( rd, nor );
+
+      vec3 lin = vec3(0.0);
+      // sun
+      {
+        vec3 lig = normalize( vec3(-0.5, 0.4, -0.6) );
+        vec3 hal = normalize( lig-rd );
+        float dif = clamp( dot( nor, lig ), 0.0, 1.0 );
+        float spe = pow( clamp( dot( nor, hal ), 0.0, 1.0 ),16.0);
+        spe *= dif;
+        spe *= 0.04+0.96*pow(clamp(1.0-dot(hal,lig),0.0,1.0),5.0);
+        lin += col*2.20*dif*vec3(1.30,1.00,0.70);
+        lin += 5.00*spe*vec3(1.30,1.00,0.70);
+      }
+      col = mix( lin, vec3(0.7,0.7,0.9), 1.0-exp( -0.0001*t*t*t ) );
+      return vec4(col,1.0);
+    }
+    
+    void main()
+    {
+      vec2 p = (gl_FragCoord.xy-0.5*uResolution.xy)/min(uResolution.x, uResolution.y);
+      vec4 col = rayMarch(p);
+      gl_FragColor = clamp(col,0.0,1.0);
+    }
+`;
+
 const initBuffers = (gl) => {
   const positionBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
@@ -79,94 +210,6 @@ const vertexShaderSource = `
   void main() {
     gl_Position = aVertexPosition;
   }
-`;
-
-const fragmentShaderSource = `
-    precision mediump float;
-    uniform float time;
-    uniform float uRotation;
-    uniform vec3 uResolution;
-    uniform sampler2D noise;
-      
-    mat3 lookAt(in vec3 eye, in vec3 tar, in float r){
-        vec3 cw = normalize(tar - eye);// camera w
-        vec3 cp = vec3(sin(r), cos(r), 0.);// camera up
-        vec3 cu = normalize(cross(cw, cp));// camera u
-        vec3 cv = normalize(cross(cu, cw));// camera v
-        return mat3(cu, cv, cw);
-    }
-    
-    float sdTriPrism( vec3 p, vec2 h )
-    {
-      vec3 q = abs(p);
-      return max(q.z-h.y,max(q.x*0.866025+p.y*0.5,-p.y)-h.x*0.5);
-    }
-    
-    float map(vec3 pos)
-    {
-        // float sinTime = sin(time * 0.00025);
-        // float height = 6.0;
-        // return pos.y - sin(pos.x * 0.1) * height * sinTime  - sin(pos.z * 0.1) * height * sinTime;
-        return sdTriPrism(pos, vec2(20.0, 10.0));
-    }
-    
-    #define CAM_DISTANCE 50.0
-    #define BACKGROUND_COLOUR vec3(0.98, 0.929, 0.804)
-    #define MAX_RAY_DISTANCE 300
-    
-    vec4 rayMarch(vec2 p){
-        float rotate = time * 0.0005; 
-        vec3 cam = vec3(sin(rotate) * CAM_DISTANCE, CAM_DISTANCE * (uRotation + 0.5) * 0.5,cos(rotate) * CAM_DISTANCE);
-        vec3 pos = cam;              
-        vec3 ray = lookAt(cam, vec3(0.0), 0.)*normalize(vec3(p, 1.0));
-        vec3 cell = vec3(0.0);
-        vec3 normal = vec3(0.0);
-        
-        int j = 0;
-        
-        for(int i = 0; i < MAX_RAY_DISTANCE; i++)
-        {
-            vec3 dist = fract(-pos * sign(ray)) + 0.00001,
-            leng = dist / abs(ray);
-            
-            float near = 9999.0;
-            if(leng.x < near){
-                normal = vec3(1,0,0);
-                near = leng.x;
-            }
-            if(leng.y < near){
-                normal = vec3(0,1,0);
-                near = leng.y;
-            }
-            if(leng.z < near){
-                normal = vec3(0,0,1);
-                near = leng.z;
-            }
-               
-            pos += ray * near;
-            cell = ceil(pos) - 0.5;
-            if (map(cell) < 0.0) break;
-            j++;
-        }
-        
-        float lerpAmount = float(j) / float(MAX_RAY_DISTANCE);
-        vec3 localPos = fract(pos) +  max(normal, vec3(0.0));
-        vec3 albedo = vec3(0.2, 0.3, 0.8);
-        vec3 lightColour = vec3(1.0);
-        vec3 lightDirection = vec3(0.5,1.0,0.0);
-        float lightIntensity = 1.0;
-        float diff = max(dot(normal, lightDirection), 0.0);
-        vec3 diffuse = vec3(diff * lightColour * lightIntensity);
-        vec3 outputColour = (BACKGROUND_COLOUR + diffuse) * albedo;
-        return vec4(mix(outputColour, BACKGROUND_COLOUR, lerpAmount), 1.0);
-    }
-    
-    void main()
-    {
-       vec2 res = uResolution.xy;   //View resolution
-       vec2 p = (gl_FragCoord.xy-0.5*uResolution.xy)/min(uResolution.x, uResolution.y);
-       gl_FragColor = rayMarch(p);
-    }
 `;
 
 export const Shader: Component = (props) => {
