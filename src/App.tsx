@@ -177,7 +177,9 @@ const App = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 2 }}
         >
-          <Shader style={{ width: "100%", height: "400px" }} />
+          <Shader
+            style={{ width: "100%", height: "800px", "max-height": "50vh" }}
+          />
         </Motion>
       </div>
       <Divider reverse />
