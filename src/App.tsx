@@ -178,7 +178,7 @@ const App = () => {
           transition={{ duration: 2 }}
         >
           <Shader
-            style={{ width: "100%", height: "800px", "max-height": "50vh" }}
+            style={{ width: '800px', height: "800px", "max-height": "75vh" }}
           />
         </Motion>
       </div>

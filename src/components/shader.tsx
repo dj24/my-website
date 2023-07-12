@@ -1,6 +1,31 @@
 import { Component, createSignal, onCleanup, onMount } from "solid-js";
 import { scroll } from "motion";
 
+const operations = `
+  vec2 opSmoothUnion( vec2 d1, vec2 d2, float k ) {
+    float h = clamp( 0.5 + 0.5*(d2.x-d1.x)/k, 0.0, 1.0 );
+    float t = mix( d2.x, d1.x, h ) - k*h*(1.0-h);
+    float m = mix( d2.y, d1.y, h );
+    return vec2(t,m);
+  }
+  
+  vec2 opSmoothSubtraction( vec2 d1, vec2 d2, float k ) {
+      float h = clamp( 0.5 - 0.5*(d2.x+d1.x)/k, 0.0, 1.0 );
+      float t = mix( d2.x, -d1.x, h ) + k*h*(1.0-h); 
+      float m = d2.y;
+      return vec2(t,m);
+  }
+  
+  float opUnion( float d1, float d2 ) { return (d1<d2) ? d1 : d2; }
+  vec2 opUnion( vec2 d1, vec2 d2 ) { return (d1.x<d2.x) ? d1 : d2; }
+  
+  vec2 opSubtraction( vec2 d1, vec2 d2 ) {
+    float t = max(-d1.x, d2.x);
+    return vec2(t,d2.y);
+  }
+  float opIntersection( float d1, float d2 ) { return max(d1,d2); }
+`;
+
 const distanceFunctions = `
   float sdTriPrism( vec3 p, vec2 h )
   {
@@ -21,29 +46,17 @@ const distanceFunctions = `
   
   float sdCappedCylinder( vec3 p, float h, float r )
   {
-    vec2 d = abs(vec2(length(p.xz),p.y)) - vec2(r,h);
+    vec2 d = abs(vec2(length(p.yz),p.x)) - vec2(r,h);
     return min(max(d.x,d.y),0.0) + length(max(d,0.0));
   }
-`;
-
-const operations = `
-  vec2 opSmoothUnion( vec2 d1, vec2 d2, float k ) {
-    float h = clamp( 0.5 + 0.5*(d2.x-d1.x)/k, 0.0, 1.0 );
-    float t = mix( d2.x, d1.x, h ) - k*h*(1.0-h);
-    float m = mix( d2.y, d1.y, h ) - k*h*(1.0-h);
-    return vec2(t,m);
+  
+  float sdArch ( vec3 p, vec3 size )
+  {
+    float cylinder = sdCappedCylinder(p, size.x, size.z);
+    float box = sdBox(p + vec3(0.0, size.y, 0.0), size);
+    return opUnion(box, cylinder);
   }
   
-  vec2 opSmoothSubtraction( vec2 d1, vec2 d2, float k ) {
-      float h = clamp( 0.5 - 0.5*(d2.x+d1.x)/k, 0.0, 1.0 );
-      float t = mix( d2.x, -d1.x, h ) + k*h*(1.0-h); 
-      float m = d2.y;
-      return vec2(t,m);
-  }
-  
-  vec2 opUnion( vec2 d1, vec2 d2 ) { return (d1.x<d2.x) ? d1 : d2; }
-  vec2 opSubtraction( vec2 d1, vec2 d2 ) { return (-d1.x > d2.x) ? -d1 : d2; }
-  float opIntersection( float d1, float d2 ) { return max(d1,d2); }
 `;
 
 const fragmentShaderSource = `
@@ -53,25 +66,50 @@ const fragmentShaderSource = `
     uniform vec3 uResolution;
     uniform sampler2D noise;
     
-    ${distanceFunctions}
-
     ${operations}
+    
+    ${distanceFunctions}
     
     vec2 map(vec3 pos)
     {
-      float sphereY = (sin(time * 0.001) - 1.0) * 10.0;
-      vec2 outerBox = vec2(sdBox(pos + vec3(0.0,90.0,0.0), vec3(20.0, 100.0, 20.0)),12.0);
-      vec2 subtractedSphere = vec2(sdSphere(pos + vec3(0.0, sphereY, 0.0), 15.0), 25.0);
-      vec2 innerSphere = vec2(sdSphere(pos + vec3(0.0, sphereY, 0.0), 10.0), 16.0);
-      vec2 morphedCube = vec2(sdBox(pos, vec3(30.0, 2.0, 30.0)), 35.5);
+      vec3 spherePos = pos + vec3(0.0, (sin(time * 0.001) - 1.0) * 10.0, 0.0);
+      vec2 outerBox = vec2(sdBox(pos + vec3(0.0,90.0,0.0), vec3(20.0, 100.0, 95.0)),0.3);
+      
+      float archY = 22.0;
+      vec3 archSize = vec3(21.0, 100.0, 22.0);
+      
+      vec2 arch1 = vec2(sdArch(pos + vec3(0.0,archY,0.0), archSize), 0.0);
+      vec2 arch2 = vec2(sdArch(pos + vec3(0.0,archY,60.0), archSize), 0.0);
+      vec2 arch3 = vec2(sdArch(pos + vec3(0.0,archY,-60.0), archSize), 0.0);
         
       vec2 res = outerBox;
-      res = opSmoothUnion(res,morphedCube, 5.0);
-      res = opSmoothSubtraction(subtractedSphere,res,5.0);
-      res = opUnion(res,innerSphere);
-      
+      res = opSubtraction(arch1,res);
+      res = opSubtraction(arch2,res);
+      res = opSubtraction(arch3,res);
       return res;
     } 
+    
+    vec3 rgb2hsv(vec3 c)
+    {
+        vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);
+        vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));
+        vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));
+    
+        float d = q.x - min(q.w, q.y);
+        float e = 1.0e-10;
+        return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);
+    }
+    
+    vec3 hsv2rgb(vec3 c)
+    {
+        vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);
+        vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);
+        return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);
+    }
+    
+    vec3 getColour(float hue){
+      return hsv2rgb(vec3(hue, 1.0, 1.0));
+    }
     
     vec3 calcNormal(vec3 p )
     {
@@ -83,10 +121,10 @@ const fragmentShaderSource = `
                           k.xxx*map( p + k.xxx*h ).x );
     }
     
-    #define CAM_DISTANCE 50.0
     #define BACKGROUND_COLOUR vec3(0.98, 0.929, 0.804)
     #define MAX_RAY_DISTANCE 200
     #define AA 2
+    #define ORTHO_SIZE 150.0
 
     vec4 rayMarch(vec3 ro, vec3 rd, vec2 p){
       vec2 res = vec2(-1.0,-1.0);
@@ -107,18 +145,19 @@ const fragmentShaderSource = `
         }
       }
       t = res.x;
-	    float m = res.y;
-      vec3 col = 0.2 + 0.2*sin( m*2.0 + vec3(0.0,1.0,2.0) );
-      vec3 lightDir = normalize(vec3(0.0,1.0,1.0));
+      float m = res.y;
+      vec3 col = getColour(m);
       vec3 pos = ro + t*rd;
       vec3 nor = calcNormal( pos );
+      
+      vec3 lightDir = normalize(vec3(0.33,0.66,1.0));
       float diff = max(0.0, dot(nor, lightDir));
-      col = col*diff*2.0;
-      return vec4(p.x > 0.0 ? col : nor,1.0);
+      col = col*diff;
+      // return vec4(p.x > 0.0 ? col : nor,1.0);
+      return vec4(col, 1.0);
     }
     
     void main(){
-      float size = 60.0;
       vec4 tot = vec4(0.0);
       for( int m=0; m<AA; m++ )
       for( int n=0; n<AA; n++ )
@@ -126,13 +165,13 @@ const fragmentShaderSource = `
           vec2 o = vec2(float(m),float(n)) / float(AA) - 0.5;
           vec2 s_pos = (2.0*(gl_FragCoord.xy + o)-uResolution.xy)/uResolution.y;
           vec3 up = vec3(0.0, 1.0, 0.0);
-          vec3 c_pos = vec3(size);
+          vec3 c_pos = vec3(ORTHO_SIZE);
           vec3 c_targ = vec3(0.0, 0.0, 0.0);
           vec3 c_dir = normalize(c_targ - c_pos);
           vec3 c_right = cross(c_dir, up);
           vec3 c_up = cross(c_right, c_dir);
           vec3 rd = normalize(c_dir);
-          vec3 ro = c_pos + c_right * size * s_pos.x + c_up * size * s_pos.y;
+          vec3 ro = c_pos + c_right * ORTHO_SIZE * s_pos.x + c_up * ORTHO_SIZE * s_pos.y;
           vec4 col = rayMarch(ro, rd, s_pos);
           tot += col;
       }
