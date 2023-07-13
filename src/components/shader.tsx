@@ -1,4 +1,4 @@
-import { Component, createSignal, onCleanup, onMount } from "solid-js";
+import { Component, createSignal, JSX, onCleanup, onMount } from "solid-js";
 import { scroll } from "motion";
 
 const operations = `
@@ -180,7 +180,7 @@ const fragmentShaderSource = `
     }
 `;
 
-const initBuffers = (gl) => {
+const initBuffers = (gl: WebGLRenderingContext) => {
   const positionBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
   const positions = [1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, -1.0];
@@ -190,8 +190,16 @@ const initBuffers = (gl) => {
   };
 };
 
-const loadShader = (gl, type, source) => {
+const loadShader = (
+  gl: WebGLRenderingContext,
+  type: number,
+  source: string,
+) => {
   const shader = gl.createShader(type);
+
+  if (!shader) {
+    return;
+  }
 
   gl.shaderSource(shader, source);
   gl.compileShader(shader);
@@ -207,33 +215,43 @@ const loadShader = (gl, type, source) => {
   return shader;
 };
 
-const initShaderProgram = (gl, vertexShaderSource, fragmentShaderSource) => {
+const initShaderProgram = (
+  gl: WebGLRenderingContext,
+  vertexShaderSource: string,
+  fragmentShaderSource: string,
+) => {
   const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+  if (!vertexShader) {
+    return;
+  }
   const fragmentShader = loadShader(
     gl,
     gl.FRAGMENT_SHADER,
     fragmentShaderSource,
   );
-
-  // Create the shader program
+  if (!fragmentShader) {
+    return;
+  }
   const shaderProgram = gl.createProgram();
+  if (!shaderProgram) {
+    return;
+  }
   gl.attachShader(shaderProgram, vertexShader);
   gl.attachShader(shaderProgram, fragmentShader);
   gl.linkProgram(shaderProgram);
 
-  // If creating the shader program failed, alert
   if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
     alert(
       "Unable to initialize the shader program: " +
         gl.getProgramInfoLog(shaderProgram),
     );
-    return null;
+    return;
   }
 
   return shaderProgram;
 };
 
-const createTexture = (gl, src) => {
+const createTexture = (gl: WebGLRenderingContext, src: string) => {
   const image = new Image();
   image.src = src;
   image.onload = () => {
@@ -260,12 +278,12 @@ const vertexShaderSource = `
   }
 `;
 
-export const Shader: Component = (props) => {
-  let canvas: HTMLCanvasElement;
+export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
+  let canvas: HTMLCanvasElement | undefined;
   let animationFrame: number;
-  const [isDragging, setIsDragging] = createSignal(false);
+  const [isDragging] = createSignal(false);
   const [rotation, setRotation] = createSignal(0);
-  const handleDrag = (event) => {
+  const handleDrag = () => {
     if (!isDragging()) {
       return;
     }
@@ -282,6 +300,9 @@ export const Shader: Component = (props) => {
   );
 
   onMount(() => {
+    if (!canvas) {
+      return;
+    }
     const gl = canvas.getContext("webgl");
     if (!gl) {
       throw new Error("No WebGl support on device");
@@ -293,7 +314,9 @@ export const Shader: Component = (props) => {
       vertexShaderSource,
       fragmentShaderSource,
     );
-
+    if (!shaderProgram) {
+      return;
+    }
     const programInfo = {
       program: shaderProgram,
       attribLocations: {
@@ -310,6 +333,9 @@ export const Shader: Component = (props) => {
     createTexture(gl, `/img/noiseTexture.png`);
 
     const main = (time: number) => {
+      if (!canvas) {
+        return;
+      }
       canvas.width = canvas.clientWidth;
       canvas.height = canvas.clientHeight;
       const buffers = initBuffers(gl);
@@ -335,7 +361,7 @@ export const Shader: Component = (props) => {
       gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
       gl.useProgram(programInfo.program);
       gl.uniform1f(programInfo.uniformLocations.rotation, rotation());
-      gl.uniform1f(programInfo.uniformLocations.time, parseFloat(time));
+      gl.uniform1f(programInfo.uniformLocations.time, time);
       gl.uniform3f(
         programInfo.uniformLocations.resolution,
         canvas.width,

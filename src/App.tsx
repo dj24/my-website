@@ -1,3 +1,4 @@
+// @ts-ignore
 import { Motion } from "@motionone/solid";
 import { animate, stagger, timeline } from "motion";
 import {
@@ -75,7 +76,7 @@ const AnimateTextHover = (props: { children: string }) => {
   const easing = easings.easeInOutExpo;
 
   createEffect(() => {
-    let sequence;
+    let sequence: any;
     if (isHovered()) {
       sequence = [
         [
@@ -178,7 +179,7 @@ const App = () => {
           transition={{ duration: 2 }}
         >
           <Shader
-            style={{ width: '800px', height: "800px", "max-height": "75vh" }}
+            style={{ width: "800px", height: "800px", "max-height": "75vh" }}
           />
         </Motion>
       </div>

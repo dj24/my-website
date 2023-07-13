@@ -1,8 +1,8 @@
 import { style } from "@vanilla-extract/css";
 import theme from "./theme.css";
-import { glook, lilitaOne } from "./text.css";
+import { lilitaOne } from "./text.css";
 
-const { spacing, typography, colours } = theme;
+const { spacing, colours } = theme;
 
 export const box = style({
   display: "flex",

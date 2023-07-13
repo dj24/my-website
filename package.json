@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@motionone/solid": "^10.16.2",
+    "@motionone/types": "^10.15.1",
     "@vanilla-extract/css": "^1.12.0",
     "motion": "^10.16.2",
     "solid-js": "^1.7.7",

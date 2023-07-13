@@ -29,6 +29,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@motionone/solid", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:10.16.2"],\
+            ["@motionone/types", "npm:10.15.1"],\
             ["@typescript-eslint/eslint-plugin", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:5.61.0"],\
             ["@typescript-eslint/parser", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:5.61.0"],\
             ["@vanilla-extract/css", "npm:1.12.0"],\
@@ -37,7 +38,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-solid", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:0.12.1"],\
             ["motion", "npm:10.16.2"],\
             ["prettier", "npm:3.0.0"],\
-            ["solid-devtools", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:0.27.3"],\
             ["solid-js", "npm:1.7.7"],\
             ["solid-three", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:0.2.0"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
@@ -1293,239 +1293,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["@solid-devtools/debugger", [\
-        ["npm:0.22.1", {\
-          "packageLocation": "./.yarn/cache/@solid-devtools-debugger-npm-0.22.1-c149a6e4f3-0f87cc46dd.zip/node_modules/@solid-devtools/debugger/",\
-          "packageDependencies": [\
-            ["@solid-devtools/debugger", "npm:0.22.1"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:e6433d6b1cec2eb0adac0deb7f9ba9dffb7867b06cdd25db12db3c5e00ac58443282df29e5cb08eee133213b2a321fd4076a593e7fd2306cc0801c3f7cc35eec#npm:0.22.1", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-devtools-debugger-virtual-bd05727fe3/0/cache/@solid-devtools-debugger-npm-0.22.1-c149a6e4f3-0f87cc46dd.zip/node_modules/@solid-devtools/debugger/",\
-          "packageDependencies": [\
-            ["@solid-devtools/debugger", "virtual:e6433d6b1cec2eb0adac0deb7f9ba9dffb7867b06cdd25db12db3c5e00ac58443282df29e5cb08eee133213b2a321fd4076a593e7fd2306cc0801c3f7cc35eec#npm:0.22.1"],\
-            ["@solid-devtools/shared", "virtual:e6433d6b1cec2eb0adac0deb7f9ba9dffb7867b06cdd25db12db3c5e00ac58443282df29e5cb08eee133213b2a321fd4076a593e7fd2306cc0801c3f7cc35eec#npm:0.12.0"],\
-            ["@solid-primitives/bounds", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.111"],\
-            ["@solid-primitives/cursor", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.109"],\
-            ["@solid-primitives/event-bus", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.0.7"],\
-            ["@solid-primitives/event-listener", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:2.2.13"],\
-            ["@solid-primitives/keyboard", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.2.3"],\
-            ["@solid-primitives/platform", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.105"],\
-            ["@solid-primitives/rootless", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.4.1"],\
-            ["@solid-primitives/scheduled", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.3.2"],\
-            ["@solid-primitives/static-store", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.2"],\
-            ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"],\
-            ["type-fest", "npm:3.12.0"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@solid-devtools/shared", [\
-        ["npm:0.12.0", {\
-          "packageLocation": "./.yarn/cache/@solid-devtools-shared-npm-0.12.0-8248a58547-3aaa40fe01.zip/node_modules/@solid-devtools/shared/",\
-          "packageDependencies": [\
-            ["@solid-devtools/shared", "npm:0.12.0"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:e6433d6b1cec2eb0adac0deb7f9ba9dffb7867b06cdd25db12db3c5e00ac58443282df29e5cb08eee133213b2a321fd4076a593e7fd2306cc0801c3f7cc35eec#npm:0.12.0", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-devtools-shared-virtual-2e69a8b76b/0/cache/@solid-devtools-shared-npm-0.12.0-8248a58547-3aaa40fe01.zip/node_modules/@solid-devtools/shared/",\
-          "packageDependencies": [\
-            ["@solid-devtools/shared", "virtual:e6433d6b1cec2eb0adac0deb7f9ba9dffb7867b06cdd25db12db3c5e00ac58443282df29e5cb08eee133213b2a321fd4076a593e7fd2306cc0801c3f7cc35eec#npm:0.12.0"],\
-            ["@solid-primitives/event-bus", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.0.7"],\
-            ["@solid-primitives/event-listener", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:2.2.13"],\
-            ["@solid-primitives/media", "virtual:2e69a8b76bcbdde5b39e22341dbb22fe292e270fdee56ea819c01d559b9b3805d88d90b6a04f8b95333d0c86a5f0aaa9bf31cd80782f15f0ea6f97e2c76a1d63#npm:2.2.3"],\
-            ["@solid-primitives/refs", "virtual:4f339eec0fc9f39911ced0c8a43425fba9847e2bab263f0fe44374e8d38afc064028e4e2ea6aaab6415d0239f52aa9182291e77fd9e032ad6e3bda633df2d097#npm:1.0.4"],\
-            ["@solid-primitives/rootless", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.4.1"],\
-            ["@solid-primitives/scheduled", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.3.2"],\
-            ["@solid-primitives/static-store", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.2"],\
-            ["@solid-primitives/styles", "virtual:2e69a8b76bcbdde5b39e22341dbb22fe292e270fdee56ea819c01d559b9b3805d88d90b6a04f8b95333d0c86a5f0aaa9bf31cd80782f15f0ea6f97e2c76a1d63#npm:0.0.108"],\
-            ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@solid-primitives/bounds", [\
-        ["npm:0.0.111", {\
-          "packageLocation": "./.yarn/cache/@solid-primitives-bounds-npm-0.0.111-e4ea09ec2f-26d5f2235e.zip/node_modules/@solid-primitives/bounds/",\
-          "packageDependencies": [\
-            ["@solid-primitives/bounds", "npm:0.0.111"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.111", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-primitives-bounds-virtual-c4c0322a03/0/cache/@solid-primitives-bounds-npm-0.0.111-e4ea09ec2f-26d5f2235e.zip/node_modules/@solid-primitives/bounds/",\
-          "packageDependencies": [\
-            ["@solid-primitives/bounds", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.111"],\
-            ["@solid-primitives/event-listener", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:2.2.13"],\
-            ["@solid-primitives/resize-observer", "virtual:c4c0322a03a14778d4e89b5a45c15033a918fb7bb90fd5d7a89548a0f335d043d9538b3c3f9fd26804362a62507e2fca2f328ddb5b4c1c7a092ad4693fa09353#npm:2.0.18"],\
-            ["@solid-primitives/static-store", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.2"],\
-            ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@solid-primitives/cursor", [\
-        ["npm:0.0.109", {\
-          "packageLocation": "./.yarn/cache/@solid-primitives-cursor-npm-0.0.109-9c45448b52-c06991f72e.zip/node_modules/@solid-primitives/cursor/",\
-          "packageDependencies": [\
-            ["@solid-primitives/cursor", "npm:0.0.109"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.109", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-primitives-cursor-virtual-ca7034efb9/0/cache/@solid-primitives-cursor-npm-0.0.109-9c45448b52-c06991f72e.zip/node_modules/@solid-primitives/cursor/",\
-          "packageDependencies": [\
-            ["@solid-primitives/cursor", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.109"],\
-            ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@solid-primitives/event-bus", [\
-        ["npm:1.0.7", {\
-          "packageLocation": "./.yarn/cache/@solid-primitives-event-bus-npm-1.0.7-c219b6b8a9-c561964264.zip/node_modules/@solid-primitives/event-bus/",\
-          "packageDependencies": [\
-            ["@solid-primitives/event-bus", "npm:1.0.7"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.0.7", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-primitives-event-bus-virtual-f2de78fa07/0/cache/@solid-primitives-event-bus-npm-1.0.7-c219b6b8a9-c561964264.zip/node_modules/@solid-primitives/event-bus/",\
-          "packageDependencies": [\
-            ["@solid-primitives/event-bus", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.0.7"],\
-            ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@solid-primitives/event-listener", [\
-        ["npm:2.2.13", {\
-          "packageLocation": "./.yarn/cache/@solid-primitives-event-listener-npm-2.2.13-996cd883dc-c4af9325be.zip/node_modules/@solid-primitives/event-listener/",\
-          "packageDependencies": [\
-            ["@solid-primitives/event-listener", "npm:2.2.13"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:2.2.13", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-primitives-event-listener-virtual-a70b77195d/0/cache/@solid-primitives-event-listener-npm-2.2.13-996cd883dc-c4af9325be.zip/node_modules/@solid-primitives/event-listener/",\
-          "packageDependencies": [\
-            ["@solid-primitives/event-listener", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:2.2.13"],\
-            ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@solid-primitives/keyboard", [\
-        ["npm:1.2.3", {\
-          "packageLocation": "./.yarn/cache/@solid-primitives-keyboard-npm-1.2.3-b0fd832d27-892a971914.zip/node_modules/@solid-primitives/keyboard/",\
-          "packageDependencies": [\
-            ["@solid-primitives/keyboard", "npm:1.2.3"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.2.3", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-primitives-keyboard-virtual-464f645f58/0/cache/@solid-primitives-keyboard-npm-1.2.3-b0fd832d27-892a971914.zip/node_modules/@solid-primitives/keyboard/",\
-          "packageDependencies": [\
-            ["@solid-primitives/keyboard", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.2.3"],\
-            ["@solid-primitives/event-listener", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:2.2.13"],\
-            ["@solid-primitives/rootless", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.4.1"],\
-            ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@solid-primitives/media", [\
-        ["npm:2.2.3", {\
-          "packageLocation": "./.yarn/cache/@solid-primitives-media-npm-2.2.3-2bf793b969-f0abb34a25.zip/node_modules/@solid-primitives/media/",\
-          "packageDependencies": [\
-            ["@solid-primitives/media", "npm:2.2.3"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:2e69a8b76bcbdde5b39e22341dbb22fe292e270fdee56ea819c01d559b9b3805d88d90b6a04f8b95333d0c86a5f0aaa9bf31cd80782f15f0ea6f97e2c76a1d63#npm:2.2.3", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-primitives-media-virtual-1fb5682b38/0/cache/@solid-primitives-media-npm-2.2.3-2bf793b969-f0abb34a25.zip/node_modules/@solid-primitives/media/",\
-          "packageDependencies": [\
-            ["@solid-primitives/media", "virtual:2e69a8b76bcbdde5b39e22341dbb22fe292e270fdee56ea819c01d559b9b3805d88d90b6a04f8b95333d0c86a5f0aaa9bf31cd80782f15f0ea6f97e2c76a1d63#npm:2.2.3"],\
-            ["@solid-primitives/event-listener", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:2.2.13"],\
-            ["@solid-primitives/rootless", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.4.1"],\
-            ["@solid-primitives/static-store", "virtual:cb1cb0a3660f2e80199d3a440c024e2ad185e0467a63f6602a168d21cba64bf93511b0ad9bce5fd65d79aee2febfa698a925219ba876bbeb06d90c322fb69866#npm:0.0.4"],\
-            ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@solid-primitives/platform", [\
-        ["npm:0.0.105", {\
-          "packageLocation": "./.yarn/cache/@solid-primitives-platform-npm-0.0.105-11985a51d8-e851987163.zip/node_modules/@solid-primitives/platform/",\
-          "packageDependencies": [\
-            ["@solid-primitives/platform", "npm:0.0.105"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.105", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-primitives-platform-virtual-964e861084/0/cache/@solid-primitives-platform-npm-0.0.105-11985a51d8-e851987163.zip/node_modules/@solid-primitives/platform/",\
-          "packageDependencies": [\
-            ["@solid-primitives/platform", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.105"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["@solid-primitives/props", [\
         ["npm:3.1.6", {\
           "packageLocation": "./.yarn/cache/@solid-primitives-props-npm-3.1.6-4ca2e3e821-e0035fa5a0.zip/node_modules/@solid-primitives/props/",\
@@ -1561,145 +1328,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/__virtual__/@solid-primitives-refs-virtual-6adbe40767/0/cache/@solid-primitives-refs-npm-1.0.4-d3ae61e44a-2ce4188cd7.zip/node_modules/@solid-primitives/refs/",\
           "packageDependencies": [\
             ["@solid-primitives/refs", "virtual:4f339eec0fc9f39911ced0c8a43425fba9847e2bab263f0fe44374e8d38afc064028e4e2ea6aaab6415d0239f52aa9182291e77fd9e032ad6e3bda633df2d097#npm:1.0.4"],\
-            ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@solid-primitives/resize-observer", [\
-        ["npm:2.0.18", {\
-          "packageLocation": "./.yarn/cache/@solid-primitives-resize-observer-npm-2.0.18-4fb334bf80-6cb89754a4.zip/node_modules/@solid-primitives/resize-observer/",\
-          "packageDependencies": [\
-            ["@solid-primitives/resize-observer", "npm:2.0.18"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:c4c0322a03a14778d4e89b5a45c15033a918fb7bb90fd5d7a89548a0f335d043d9538b3c3f9fd26804362a62507e2fca2f328ddb5b4c1c7a092ad4693fa09353#npm:2.0.18", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-primitives-resize-observer-virtual-cb1cb0a366/0/cache/@solid-primitives-resize-observer-npm-2.0.18-4fb334bf80-6cb89754a4.zip/node_modules/@solid-primitives/resize-observer/",\
-          "packageDependencies": [\
-            ["@solid-primitives/resize-observer", "virtual:c4c0322a03a14778d4e89b5a45c15033a918fb7bb90fd5d7a89548a0f335d043d9538b3c3f9fd26804362a62507e2fca2f328ddb5b4c1c7a092ad4693fa09353#npm:2.0.18"],\
-            ["@solid-primitives/event-listener", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:2.2.13"],\
-            ["@solid-primitives/rootless", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.4.1"],\
-            ["@solid-primitives/static-store", "virtual:cb1cb0a3660f2e80199d3a440c024e2ad185e0467a63f6602a168d21cba64bf93511b0ad9bce5fd65d79aee2febfa698a925219ba876bbeb06d90c322fb69866#npm:0.0.4"],\
-            ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@solid-primitives/rootless", [\
-        ["npm:1.4.1", {\
-          "packageLocation": "./.yarn/cache/@solid-primitives-rootless-npm-1.4.1-0ada4f340d-8b31ec4ee7.zip/node_modules/@solid-primitives/rootless/",\
-          "packageDependencies": [\
-            ["@solid-primitives/rootless", "npm:1.4.1"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.4.1", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-primitives-rootless-virtual-2f5233badd/0/cache/@solid-primitives-rootless-npm-1.4.1-0ada4f340d-8b31ec4ee7.zip/node_modules/@solid-primitives/rootless/",\
-          "packageDependencies": [\
-            ["@solid-primitives/rootless", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.4.1"],\
-            ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@solid-primitives/scheduled", [\
-        ["npm:1.3.2", {\
-          "packageLocation": "./.yarn/cache/@solid-primitives-scheduled-npm-1.3.2-97d3e3fc0b-c51daff23a.zip/node_modules/@solid-primitives/scheduled/",\
-          "packageDependencies": [\
-            ["@solid-primitives/scheduled", "npm:1.3.2"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.3.2", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-primitives-scheduled-virtual-55e6fc344b/0/cache/@solid-primitives-scheduled-npm-1.3.2-97d3e3fc0b-c51daff23a.zip/node_modules/@solid-primitives/scheduled/",\
-          "packageDependencies": [\
-            ["@solid-primitives/scheduled", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.3.2"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@solid-primitives/static-store", [\
-        ["npm:0.0.2", {\
-          "packageLocation": "./.yarn/cache/@solid-primitives-static-store-npm-0.0.2-9a4aa7ce67-b8eef07e29.zip/node_modules/@solid-primitives/static-store/",\
-          "packageDependencies": [\
-            ["@solid-primitives/static-store", "npm:0.0.2"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["npm:0.0.4", {\
-          "packageLocation": "./.yarn/cache/@solid-primitives-static-store-npm-0.0.4-542e6c26ee-a26387c077.zip/node_modules/@solid-primitives/static-store/",\
-          "packageDependencies": [\
-            ["@solid-primitives/static-store", "npm:0.0.4"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.2", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-primitives-static-store-virtual-f51667b2ea/0/cache/@solid-primitives-static-store-npm-0.0.2-9a4aa7ce67-b8eef07e29.zip/node_modules/@solid-primitives/static-store/",\
-          "packageDependencies": [\
-            ["@solid-primitives/static-store", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:0.0.2"],\
-            ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }],\
-        ["virtual:cb1cb0a3660f2e80199d3a440c024e2ad185e0467a63f6602a168d21cba64bf93511b0ad9bce5fd65d79aee2febfa698a925219ba876bbeb06d90c322fb69866#npm:0.0.4", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-primitives-static-store-virtual-b35adbd93f/0/cache/@solid-primitives-static-store-npm-0.0.4-542e6c26ee-a26387c077.zip/node_modules/@solid-primitives/static-store/",\
-          "packageDependencies": [\
-            ["@solid-primitives/static-store", "virtual:cb1cb0a3660f2e80199d3a440c024e2ad185e0467a63f6602a168d21cba64bf93511b0ad9bce5fd65d79aee2febfa698a925219ba876bbeb06d90c322fb69866#npm:0.0.4"],\
-            ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
-            ["@types/solid-js", null],\
-            ["solid-js", "npm:1.7.7"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "solid-js"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@solid-primitives/styles", [\
-        ["npm:0.0.108", {\
-          "packageLocation": "./.yarn/cache/@solid-primitives-styles-npm-0.0.108-e96fffcb3d-e209426360.zip/node_modules/@solid-primitives/styles/",\
-          "packageDependencies": [\
-            ["@solid-primitives/styles", "npm:0.0.108"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:2e69a8b76bcbdde5b39e22341dbb22fe292e270fdee56ea819c01d559b9b3805d88d90b6a04f8b95333d0c86a5f0aaa9bf31cd80782f15f0ea6f97e2c76a1d63#npm:0.0.108", {\
-          "packageLocation": "./.yarn/__virtual__/@solid-primitives-styles-virtual-36aa47a24c/0/cache/@solid-primitives-styles-npm-0.0.108-e96fffcb3d-e209426360.zip/node_modules/@solid-primitives/styles/",\
-          "packageDependencies": [\
-            ["@solid-primitives/styles", "virtual:2e69a8b76bcbdde5b39e22341dbb22fe292e270fdee56ea819c01d559b9b3805d88d90b6a04f8b95333d0c86a5f0aaa9bf31cd80782f15f0ea6f97e2c76a1d63#npm:0.0.108"],\
-            ["@solid-primitives/rootless", "virtual:bd05727fe382cb07ea76def04ca4bfc8f1e81f286cb36d7a5a9f23b4a2141ebf2635ec2892fea15c5cf245d9a125bd20af054cfadfb41a66581bdae7cc3ebd14#npm:1.4.1"],\
             ["@solid-primitives/utils", "virtual:70c62b2996c03c1f7a471868786322d0b08f65395abeb1937fe701e3a8e45f6cd4f5622e66075a22a1f6b1dcd3cbc1d92529320b907d8ac4ed8c493bbc3dd448#npm:6.2.0"],\
             ["@types/solid-js", null],\
             ["solid-js", "npm:1.7.7"]\
@@ -4724,6 +4352,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["portfolio", "workspace:."],\
             ["@motionone/solid", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:10.16.2"],\
+            ["@motionone/types", "npm:10.15.1"],\
             ["@typescript-eslint/eslint-plugin", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:5.61.0"],\
             ["@typescript-eslint/parser", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:5.61.0"],\
             ["@vanilla-extract/css", "npm:1.12.0"],\
@@ -4732,7 +4361,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-plugin-solid", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:0.12.1"],\
             ["motion", "npm:10.16.2"],\
             ["prettier", "npm:3.0.0"],\
-            ["solid-devtools", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:0.27.3"],\
             ["solid-js", "npm:1.7.7"],\
             ["solid-three", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:0.2.0"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
@@ -5074,41 +4702,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["solid-devtools", [\
-        ["npm:0.27.3", {\
-          "packageLocation": "./.yarn/cache/solid-devtools-npm-0.27.3-4b4ddfd282-1fb1b99218.zip/node_modules/solid-devtools/",\
-          "packageDependencies": [\
-            ["solid-devtools", "npm:0.27.3"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:0.27.3", {\
-          "packageLocation": "./.yarn/__virtual__/solid-devtools-virtual-e6433d6b1c/0/cache/solid-devtools-npm-0.27.3-4b4ddfd282-1fb1b99218.zip/node_modules/solid-devtools/",\
-          "packageDependencies": [\
-            ["solid-devtools", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:0.27.3"],\
-            ["@babel/core", "npm:7.22.8"],\
-            ["@babel/plugin-syntax-typescript", "virtual:c4d6e852fb6bc167b42d8fe7d50cfd2859a55842dbe9c9a012622ac10e0d40ef10c41a5ae3955103010296047ab18e78fcce54c41265a33ecfc9c52dfdf9ff06#npm:7.22.5"],\
-            ["@babel/types", "npm:7.22.5"],\
-            ["@solid-devtools/debugger", "virtual:e6433d6b1cec2eb0adac0deb7f9ba9dffb7867b06cdd25db12db3c5e00ac58443282df29e5cb08eee133213b2a321fd4076a593e7fd2306cc0801c3f7cc35eec#npm:0.22.1"],\
-            ["@solid-devtools/shared", "virtual:e6433d6b1cec2eb0adac0deb7f9ba9dffb7867b06cdd25db12db3c5e00ac58443282df29e5cb08eee133213b2a321fd4076a593e7fd2306cc0801c3f7cc35eec#npm:0.12.0"],\
-            ["@types/solid-js", null],\
-            ["@types/solid-start", null],\
-            ["@types/vite", null],\
-            ["solid-js", "npm:1.7.7"],\
-            ["solid-start", null],\
-            ["vite", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:4.4.2"]\
-          ],\
-          "packagePeers": [\
-            "@types/solid-js",\
-            "@types/solid-start",\
-            "@types/vite",\
-            "solid-js",\
-            "solid-start",\
-            "vite"\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["solid-js", [\
         ["npm:1.7.7", {\
           "packageLocation": "./.yarn/cache/solid-js-npm-1.7.7-bab0b073d0-89efcb68e7.zip/node_modules/solid-js/",\
@@ -5444,13 +5037,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/type-fest-npm-0.20.2-b36432617f-4fb3272df2.zip/node_modules/type-fest/",\
           "packageDependencies": [\
             ["type-fest", "npm:0.20.2"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
-        ["npm:3.12.0", {\
-          "packageLocation": "./.yarn/cache/type-fest-npm-3.12.0-786f0faba8-11cb6f40e4.zip/node_modules/type-fest/",\
-          "packageDependencies": [\
-            ["type-fest", "npm:3.12.0"]\
           ],\
           "linkType": "HARD"\
         }]\
