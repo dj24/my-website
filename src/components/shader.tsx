@@ -122,7 +122,7 @@ const fragmentShaderSource = `
     }
     
     #define BACKGROUND_COLOUR vec3(0.98, 0.929, 0.804)
-    #define MAX_RAY_DISTANCE 200
+    #define MAX_RAY_DISTANCE 250
     #define AA 2
     #define ORTHO_SIZE 150.0
 
