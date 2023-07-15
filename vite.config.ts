@@ -4,4 +4,5 @@ import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 
 export default defineConfig({
   plugins: [solid(), vanillaExtractPlugin()],
+  base: "/my-website/",
 });
