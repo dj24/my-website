@@ -10,5 +10,5 @@ export const easings: {
 };
 export const defaultAnimation: AnimationOptions = {
   easing: easings.easeOutExpo,
-  duration: 0.8,
+  duration: 1,
 };

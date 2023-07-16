@@ -1,73 +1,31 @@
 import { Component, createSignal, JSX, onCleanup, onMount } from "solid-js";
 import { scroll } from "motion";
+import {
+  createTexture,
+  draw,
+  getProgramInfo,
+  ShaderFloat,
+  ShaderVec3,
+} from "../util/webgl.ts";
+import {
+  distanceFunctions,
+  operations,
+  vertexShaderSource,
+} from "../util/shader.ts";
 
-const operations = `
-  vec2 opSmoothUnion( vec2 d1, vec2 d2, float k ) {
-    float h = clamp( 0.5 + 0.5*(d2.x-d1.x)/k, 0.0, 1.0 );
-    float t = mix( d2.x, d1.x, h ) - k*h*(1.0-h);
-    float m = mix( d2.y, d1.y, h );
-    return vec2(t,m);
-  }
-  
-  vec2 opSmoothSubtraction( vec2 d1, vec2 d2, float k ) {
-      float h = clamp( 0.5 - 0.5*(d2.x+d1.x)/k, 0.0, 1.0 );
-      float t = mix( d2.x, -d1.x, h ) + k*h*(1.0-h); 
-      float m = d2.y;
-      return vec2(t,m);
-  }
-  
-  float opUnion( float d1, float d2 ) { return (d1<d2) ? d1 : d2; }
-  vec2 opUnion( vec2 d1, vec2 d2 ) { return (d1.x<d2.x) ? d1 : d2; }
-  
-  vec2 opSubtraction( vec2 d1, vec2 d2 ) {
-    float t = max(-d1.x, d2.x);
-    return vec2(t,d2.y);
-  }
-  float opIntersection( float d1, float d2 ) { return max(d1,d2); }
-`;
-
-const distanceFunctions = `
-  float sdTriPrism( vec3 p, vec2 h )
-  {
-    vec3 q = abs(p);
-    return max(q.z-h.y,max(q.x*0.866025+p.y*0.5,-p.y)-h.x*0.5);
-  }
-  
-  float sdBox( vec3 p, vec3 b )
-  {
-    vec3 q = abs(p) - b;
-    return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0);
-  }
-  
-  float sdSphere( vec3 p, float s )
-  {
-    return length(p)-s;
-  }
-  
-  float sdCappedCylinder( vec3 p, float h, float r )
-  {
-    vec2 d = abs(vec2(length(p.yz),p.x)) - vec2(r,h);
-    return min(max(d.x,d.y),0.0) + length(max(d,0.0));
-  }
-  
-  float sdArch ( vec3 p, vec3 size )
-  {
-    float cylinder = sdCappedCylinder(p, size.x, size.z);
-    float box = sdBox(p + vec3(0.0, size.y, 0.0), size);
-    return opUnion(box, cylinder);
-  }
-  
-`;
-
-const fragmentShaderSource = `
+const fragmentShaderSource = (
+  floatNames: string[],
+  vec3Names: string[],
+  textureNames: string[],
+) => `
     precision mediump float;
-    uniform float time;
-    uniform float uRotation;
-    uniform vec3 uResolution;
-    uniform sampler2D noise;
-    
+    ${floatNames.reduce((acc, name) => `${acc} \n uniform float ${name};`, "")}
+    ${vec3Names.reduce((acc, name) => `${acc} \n uniform vec3 ${name};`, "")}
+    ${textureNames.reduce(
+      (acc, name) => `${acc} \n uniform sampler2D ${name};`,
+      "",
+    )}
     ${operations}
-    
     ${distanceFunctions}
     
     vec2 map(vec3 pos)
@@ -163,7 +121,7 @@ const fragmentShaderSource = `
       for( int n=0; n<AA; n++ )
       {
           vec2 o = vec2(float(m),float(n)) / float(AA) - 0.5;
-          vec2 s_pos = (2.0*(gl_FragCoord.xy + o)-uResolution.xy)/uResolution.y;
+          vec2 s_pos = (2.0*(gl_FragCoord.xy + o)-resolution.xy)/resolution.y;
           vec3 up = vec3(0.0, 1.0, 0.0);
           vec3 c_pos = vec3(ORTHO_SIZE);
           vec3 c_targ = vec3(0.0, 0.0, 0.0);
@@ -180,109 +138,14 @@ const fragmentShaderSource = `
     }
 `;
 
-const initBuffers = (gl: WebGLRenderingContext) => {
-  const positionBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-  const positions = [1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, -1.0];
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
-  return {
-    position: positionBuffer,
-  };
-};
-
-const loadShader = (
-  gl: WebGLRenderingContext,
-  type: number,
-  source: string,
-) => {
-  const shader = gl.createShader(type);
-
-  if (!shader) {
-    return;
-  }
-
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    alert(
-      "An error occurred compiling the shaders: " + gl.getShaderInfoLog(shader),
-    );
-    gl.deleteShader(shader);
-    return null;
-  }
-
-  return shader;
-};
-
-const initShaderProgram = (
-  gl: WebGLRenderingContext,
-  vertexShaderSource: string,
-  fragmentShaderSource: string,
-) => {
-  const vertexShader = loadShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
-  if (!vertexShader) {
-    return;
-  }
-  const fragmentShader = loadShader(
-    gl,
-    gl.FRAGMENT_SHADER,
-    fragmentShaderSource,
-  );
-  if (!fragmentShader) {
-    return;
-  }
-  const shaderProgram = gl.createProgram();
-  if (!shaderProgram) {
-    return;
-  }
-  gl.attachShader(shaderProgram, vertexShader);
-  gl.attachShader(shaderProgram, fragmentShader);
-  gl.linkProgram(shaderProgram);
-
-  if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-    alert(
-      "Unable to initialize the shader program: " +
-        gl.getProgramInfoLog(shaderProgram),
-    );
-    return;
-  }
-
-  return shaderProgram;
-};
-
-const createTexture = (gl: WebGLRenderingContext, src: string) => {
-  const image = new Image();
-  image.src = src;
-  image.onload = () => {
-    // Create a texture.
-    const texture = gl.createTexture();
-    gl.bindTexture(gl.TEXTURE_2D, texture);
-
-    // Set the parameters so we can render any size image.
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.TEXTURE_WRAP_S);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.TEXTURE_WRAP_T);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-
-    // Upload the image into the texture.
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-  };
-};
-
-const vertexShaderSource = `
-  attribute vec4 aVertexPosition;
-  
-  void main() {
-    gl_Position = aVertexPosition;
-  }
-`;
-
 export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
   let canvas: HTMLCanvasElement | undefined;
   let animationFrame: number;
   const [isDragging] = createSignal(false);
   const [rotation, setRotation] = createSignal(0);
+  const floatNames = ["time", "rotation"];
+  const vec3Names = ["resolution"];
+  const textureNames = ["noise"];
   const handleDrag = () => {
     if (!isDragging()) {
       return;
@@ -309,26 +172,13 @@ export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
     }
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
-    const shaderProgram = initShaderProgram(
+
+    const programInfo = getProgramInfo(
       gl,
+      fragmentShaderSource(floatNames, vec3Names, textureNames),
       vertexShaderSource,
-      fragmentShaderSource,
+      floatNames.concat(vec3Names).concat(textureNames),
     );
-    if (!shaderProgram) {
-      return;
-    }
-    const programInfo = {
-      program: shaderProgram,
-      attribLocations: {
-        vertexPosition: gl.getAttribLocation(shaderProgram, "aVertexPosition"),
-      },
-      uniformLocations: {
-        resolution: gl.getUniformLocation(shaderProgram, "uResolution"),
-        time: gl.getUniformLocation(shaderProgram, "time"),
-        rotation: gl.getUniformLocation(shaderProgram, "uRotation"),
-        backgroundColour: gl.getUniformLocation(shaderProgram, "uBackground"),
-      },
-    };
 
     createTexture(gl, `/img/noiseTexture.png`);
 
@@ -336,39 +186,14 @@ export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
       if (!canvas) {
         return;
       }
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
-      const buffers = initBuffers(gl);
-      gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-      gl.clearColor(0.0, 0.0, 0.0, 1.0); // Clear to black, fully opaque
-      gl.clearDepth(1.0); // Clear everything
-      gl.depthFunc(gl.LEQUAL); // Near things obscure far things
-      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-      const numComponents = 2;
-      const type = gl.FLOAT;
-      const normalize = false;
-      const stride = 0;
-      const offset = 0;
-      gl.bindBuffer(gl.ARRAY_BUFFER, buffers.position);
-      gl.vertexAttribPointer(
-        programInfo.attribLocations.vertexPosition,
-        numComponents,
-        type,
-        normalize,
-        stride,
-        offset,
-      );
-      gl.enableVertexAttribArray(programInfo.attribLocations.vertexPosition);
-      gl.useProgram(programInfo.program);
-      gl.uniform1f(programInfo.uniformLocations.rotation, rotation());
-      gl.uniform1f(programInfo.uniformLocations.time, time);
-      gl.uniform3f(
-        programInfo.uniformLocations.resolution,
-        canvas.width,
-        canvas.height,
-        1.0,
-      );
-      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      const vec3s: ShaderVec3[] = [
+        { name: "resolution", value: [canvas.width, canvas.height, 1.0] },
+      ];
+      const floats: ShaderFloat[] = [
+        { name: "rotation", value: rotation() },
+        { name: "time", value: time },
+      ];
+      draw(gl, programInfo, canvas, vec3s, floats);
       animationFrame = window.requestAnimationFrame(main);
     };
     animationFrame = window.requestAnimationFrame(main);

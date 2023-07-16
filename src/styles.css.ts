@@ -188,3 +188,9 @@ export const heroImage = style({
   right: 0,
   bottom: 0,
 });
+
+export const animatedLetter = style({
+  willChange: "transform",
+  display: "inline-block",
+  whiteSpace: "pre",
+});

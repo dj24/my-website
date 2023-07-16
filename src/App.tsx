@@ -2,6 +2,7 @@
 import { Motion } from "@motionone/solid";
 import { animate, stagger, timeline } from "motion";
 import {
+  animatedLetter,
   content,
   displayText,
   divider,
@@ -26,8 +27,12 @@ const AnimatedLetters = (props: { children: string }) => {
   const id = createUniqueId();
   onMount(() => {
     animate(
-      `#${id} span`,
-      { y: ["100%", "0%"], opacity: [0, 1] },
+      `[data-motion-id="${id}"] > span`,
+      {
+        y: ["100%", "0%"],
+        opacity: [0, 1],
+        scale: [0.9, 1],
+      },
       {
         delay: stagger(0.0375),
         y: defaultAnimation,
@@ -35,19 +40,9 @@ const AnimatedLetters = (props: { children: string }) => {
     );
   });
   return (
-    <span id={id}>
+    <span data-motion-id={id}>
       <For each={props.children.split("")}>
-        {(char) => (
-          <span
-            style={{
-              "will-change": "transform",
-              display: "inline-block",
-              "white-space": "pre",
-            }}
-          >
-            {char}
-          </span>
-        )}
+        {(char) => <span class={animatedLetter}>{char}</span>}
       </For>
     </span>
   );
@@ -179,7 +174,12 @@ const App = () => {
           transition={{ duration: 2 }}
         >
           <Shader
-            style={{ width: "800px", height: "800px", "max-height": "75vh" }}
+            style={{
+              width: "800px",
+              height: "800px",
+              "max-height": "75vh",
+              "max-width": "100%",
+            }}
           />
         </Motion>
       </div>
