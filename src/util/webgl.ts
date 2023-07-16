@@ -82,8 +82,6 @@ export const drawScene = (
   floats: ShaderFloat[],
 ) => {
   const buffers = initBuffers(gl);
-  gl.canvas.width = gl.canvas.clientWidth;
-  gl.canvas.height = gl.canvas.clientHeight;
   gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
   gl.clearColor(0.0, 0.0, 0.0, 1.0); // Clear to black, fully opaque
   gl.clearDepth(1.0); // Clear everything

@@ -167,22 +167,13 @@ const App = () => {
         </h1>
       </main>
       <Divider reverse />
-      <div style={{ overflow: "hidden" }}>
-        <Motion
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 2 }}
-        >
-          <Shader
-            style={{
-              width: "800px",
-              height: "800px",
-              "max-height": "75vh",
-              "max-width": "100%",
-            }}
-          />
-        </Motion>
-      </div>
+      <Shader
+        style={{
+          height: "800px",
+          "max-height": "75vh",
+          width: "100%",
+        }}
+      />
       <Divider reverse />
       <For each={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}>
         {() => (

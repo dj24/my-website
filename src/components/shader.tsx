@@ -35,6 +35,9 @@ export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
   );
 
   onMount(() => {
+    if (!canvas) {
+      return
+    }
     const gl = canvas?.getContext("webgl");
     if (!gl) {
       throw new Error("No WebGl support on device");
@@ -45,7 +48,8 @@ export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
       vert,
       floatNames.concat(vec3Names).concat(textureNames),
     );
-
+    gl.canvas.width = canvas.clientWidth;
+    gl.canvas.height = canvas.clientHeight;
     bindRenderTexture(gl, gl.canvas.width, gl.canvas.height);
     // TODO: bind and unbind at correct points
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);

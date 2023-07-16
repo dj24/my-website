@@ -39,12 +39,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["glsl-easings", "npm:1.0.0"],\
             ["glsl-fxaa", "npm:3.0.0"],\
             ["glsl-noise", "npm:0.0.0"],\
+            ["glslify", "npm:7.1.1"],\
             ["motion", "npm:10.16.2"],\
             ["prettier", "npm:3.0.0"],\
             ["solid-js", "npm:1.7.7"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
             ["vite", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:4.4.2"],\
-            ["vite-plugin-glsl", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:1.1.2"],\
             ["vite-plugin-glslify", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.0.2"],\
             ["vite-plugin-solid", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.7.0"]\
           ],\
@@ -1316,29 +1316,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["picomatch", "npm:2.3.1"]\
           ],\
           "linkType": "HARD"\
-        }],\
-        ["npm:5.0.2", {\
-          "packageLocation": "./.yarn/cache/@rollup-pluginutils-npm-5.0.2-6aa9d0ddd4-edea15e543.zip/node_modules/@rollup/pluginutils/",\
-          "packageDependencies": [\
-            ["@rollup/pluginutils", "npm:5.0.2"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:0421cab8796026181a8f28824ea428b471e57fbd9803cb87fdde4638d719c306e272f7855b76659e8cef5ebc661c1e7bf264315113e580e42b6c416106a28edc#npm:5.0.2", {\
-          "packageLocation": "./.yarn/__virtual__/@rollup-pluginutils-virtual-76ab4bc62c/0/cache/@rollup-pluginutils-npm-5.0.2-6aa9d0ddd4-edea15e543.zip/node_modules/@rollup/pluginutils/",\
-          "packageDependencies": [\
-            ["@rollup/pluginutils", "virtual:0421cab8796026181a8f28824ea428b471e57fbd9803cb87fdde4638d719c306e272f7855b76659e8cef5ebc661c1e7bf264315113e580e42b6c416106a28edc#npm:5.0.2"],\
-            ["@types/estree", "npm:1.0.1"],\
-            ["@types/rollup", null],\
-            ["estree-walker", "npm:2.0.2"],\
-            ["picomatch", "npm:2.3.1"],\
-            ["rollup", null]\
-          ],\
-          "packagePeers": [\
-            "@types/rollup",\
-            "rollup"\
-          ],\
-          "linkType": "HARD"\
         }]\
       ]],\
       ["@solid-primitives/props", [\
@@ -1481,15 +1458,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@types/babel__traverse", "npm:7.20.1"],\
             ["@babel/types", "npm:7.22.5"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["@types/estree", [\
-        ["npm:1.0.1", {\
-          "packageLocation": "./.yarn/cache/@types-estree-npm-1.0.1-4c9469c165-e9aa175eac.zip/node_modules/@types/estree/",\
-          "packageDependencies": [\
-            ["@types/estree", "npm:1.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -4860,12 +4828,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["glsl-easings", "npm:1.0.0"],\
             ["glsl-fxaa", "npm:3.0.0"],\
             ["glsl-noise", "npm:0.0.0"],\
+            ["glslify", "npm:7.1.1"],\
             ["motion", "npm:10.16.2"],\
             ["prettier", "npm:3.0.0"],\
             ["solid-js", "npm:1.7.7"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
             ["vite", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:4.4.2"],\
-            ["vite-plugin-glsl", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:1.1.2"],\
             ["vite-plugin-glslify", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.0.2"],\
             ["vite-plugin-solid", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.7.0"]\
           ],\
@@ -5867,29 +5835,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["source-map", "npm:0.6.1"],\
             ["source-map-support", "npm:0.5.21"],\
             ["vite", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:4.4.2"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["vite-plugin-glsl", [\
-        ["npm:1.1.2", {\
-          "packageLocation": "./.yarn/cache/vite-plugin-glsl-npm-1.1.2-0419b62c65-8b77944ce9.zip/node_modules/vite-plugin-glsl/",\
-          "packageDependencies": [\
-            ["vite-plugin-glsl", "npm:1.1.2"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:1.1.2", {\
-          "packageLocation": "./.yarn/__virtual__/vite-plugin-glsl-virtual-0421cab879/0/cache/vite-plugin-glsl-npm-1.1.2-0419b62c65-8b77944ce9.zip/node_modules/vite-plugin-glsl/",\
-          "packageDependencies": [\
-            ["vite-plugin-glsl", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:1.1.2"],\
-            ["@rollup/pluginutils", "virtual:0421cab8796026181a8f28824ea428b471e57fbd9803cb87fdde4638d719c306e272f7855b76659e8cef5ebc661c1e7bf264315113e580e42b6c416106a28edc#npm:5.0.2"],\
-            ["@types/vite", null],\
-            ["vite", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:4.4.2"]\
-          ],\
-          "packagePeers": [\
-            "@types/vite",\
-            "vite"\
           ],\
           "linkType": "HARD"\
         }]\
