@@ -1,5 +1,3 @@
-import { vertexShaderSource } from "./shader.ts";
-
 export const initBuffers = (gl: WebGLRenderingContext) => {
   const positionBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
@@ -25,7 +23,7 @@ export const loadShader = (
   gl.compileShader(shader);
 
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    alert(
+    console.error(
       "An error occurred compiling the shaders: " + gl.getShaderInfoLog(shader),
     );
     gl.deleteShader(shader);
@@ -143,7 +141,7 @@ export const initShaderProgram = (
   gl.linkProgram(shaderProgram);
 
   if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-    alert(
+    console.error(
       "Unable to initialize the shader program: " +
         gl.getProgramInfoLog(shaderProgram),
     );
