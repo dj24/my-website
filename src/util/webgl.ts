@@ -75,16 +75,15 @@ type ProgramInfo = {
   uniformLocations: any;
 };
 
-export const draw = (
+export const drawScene = (
   gl: WebGLRenderingContext,
   programInfo: ProgramInfo,
-  canvas: HTMLCanvasElement,
   vec3s: ShaderVec3[],
   floats: ShaderFloat[],
 ) => {
-  canvas.width = canvas.clientWidth;
-  canvas.height = canvas.clientHeight;
   const buffers = initBuffers(gl);
+  gl.canvas.width = gl.canvas.clientWidth;
+  gl.canvas.height = gl.canvas.clientHeight;
   gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
   gl.clearColor(0.0, 0.0, 0.0, 1.0); // Clear to black, fully opaque
   gl.clearDepth(1.0); // Clear everything
@@ -174,3 +173,15 @@ export const getProgramInfo = (
     uniformLocations: getUniformLocations(gl, shaderProgram, uniformNames),
   };
 };
+
+export const bindRenderTexture = (gl: WebGLRenderingContext, width: number, height: number) => {
+  const targetTexture = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, targetTexture);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, width, height, 0, gl.RGBA, gl.UNSIGNED_BYTE, null);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  const fb = gl.createFramebuffer();
+  gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+  gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, targetTexture, 0);
+}

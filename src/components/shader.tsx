@@ -3,11 +3,12 @@ import frag from '../shaders/hero.frag';
 import vert from '../shaders/hero.vert';
 import { scroll } from "motion";
 import {
-  draw,
+  drawScene,
   getProgramInfo,
   ShaderFloat,
   ShaderVec3,
 } from "../util/webgl.ts";
+import { bindRenderTexture } from "../util/webgl";
 
 export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
   let canvas: HTMLCanvasElement | undefined;
@@ -34,16 +35,10 @@ export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
   );
 
   onMount(() => {
-    if (!canvas) {
-      return;
-    }
-    const gl = canvas.getContext("webgl");
+    const gl = canvas?.getContext("webgl");
     if (!gl) {
       throw new Error("No WebGl support on device");
     }
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
-
     const programInfo = getProgramInfo(
       gl,
       frag,
@@ -51,18 +46,19 @@ export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
       floatNames.concat(vec3Names).concat(textureNames),
     );
 
+    bindRenderTexture(gl, gl.canvas.width, gl.canvas.height);
+    // TODO: bind and unbind at correct points
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+
     const main = (time: number) => {
-      if (!canvas) {
-        return;
-      }
       const vec3s: ShaderVec3[] = [
-        { name: "resolution", value: [canvas.width, canvas.height, 1.0] },
+        { name: "resolution", value: [gl.canvas.width, gl.canvas.height, 1.0] },
       ];
       const floats: ShaderFloat[] = [
         { name: "rotation", value: rotation() },
         { name: "time", value: time },
       ];
-      draw(gl, programInfo, canvas, vec3s, floats);
+      drawScene(gl, programInfo, vec3s, floats);
       animationFrame = window.requestAnimationFrame(main);
     };
     animationFrame = window.requestAnimationFrame(main);
