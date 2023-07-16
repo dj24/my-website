@@ -12,6 +12,9 @@
     "@motionone/solid": "^10.16.2",
     "@motionone/types": "^10.15.1",
     "@vanilla-extract/css": "^1.12.0",
+    "glsl-easings": "^1.0.0",
+    "glsl-fxaa": "^3.0.0",
+    "glsl-noise": "^0.0.0",
     "motion": "^10.16.2",
     "solid-js": "^1.7.7"
   },
@@ -24,7 +27,7 @@
     "prettier": "^3.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.0",
-    "vite-plugin-glsl": "^1.1.2",
+    "vite-plugin-glslify": "^2.0.2",
     "vite-plugin-solid": "^2.7.0"
   },
   "packageManager": "yarn@3.6.1"

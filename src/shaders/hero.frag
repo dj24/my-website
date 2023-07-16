@@ -1,8 +1,11 @@
 precision mediump float;
 
-#include includes/sdf;
-#include includes/ops;
-#include includes/colour;
+#pragma glslify: sdBox = require(./includes/sdf/box)
+#pragma glslify: sdCappedCylinder = require(./includes/sdf/capped-cylinder)
+#pragma glslify: sdArch = require(./includes/sdf/arch)
+#pragma glslify: opUnion = require(./includes/operations/union)
+#pragma glslify: opSubtraction = require(./includes/operations/subtraction)
+#pragma glslify: hsv2rgb = require(./includes/colour/hsv2rgb)
 
 uniform float time;
 uniform float rotation;
@@ -13,10 +16,8 @@ uniform vec3 resolution;
 #define AA 1
 #define ORTHO_SIZE 150.0
 
-float sdArch ( vec3 p, vec3 size ){
-    float cylinder = sdCappedCylinder(p, size.x, size.z);
-    float box = sdBox(p + vec3(0.0, size.y, 0.0), size);
-    return opUnion(box, cylinder);
+vec3 getColour(float hue){
+    return hsv2rgb(vec3(hue, 1.0, 1.0));
 }
 
 vec2 map(vec3 pos)
