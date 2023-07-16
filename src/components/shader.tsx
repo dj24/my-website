@@ -3,7 +3,6 @@ import frag from '../shaders/hero.frag';
 import vert from '../shaders/hero.vert';
 import { scroll } from "motion";
 import {
-  createTexture,
   draw,
   getProgramInfo,
   ShaderFloat,
