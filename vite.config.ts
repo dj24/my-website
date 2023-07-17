@@ -6,4 +6,7 @@ import { glslify } from 'vite-plugin-glslify';
 export default defineConfig({
   plugins: [solid(), vanillaExtractPlugin(), glslify()],
   base: "/my-website/",
+  define: {
+    global: {},
+  },
 });

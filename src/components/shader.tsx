@@ -24,14 +24,13 @@ export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
   onMount(() => {
     const offscreen = canvas.transferControlToOffscreen();
     shaderWorker.postMessage(
-      { action: "setup", payload: { canvas: offscreen, container } },
+      { action: "setup", payload: { canvas: offscreen } },
       [offscreen],
     );
     createResizeObserver(canvas, ({ width, height }) => {
-      console.log(width);
       const workerPayload = {
-        width,
-        height,
+        width: width,
+        height: height,
         rotation: rotation(),
         floatNames,
         vec3Names,

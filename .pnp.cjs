@@ -31,10 +31,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@motionone/solid", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:10.16.2"],\
             ["@motionone/types", "npm:10.15.1"],\
             ["@solid-primitives/resize-observer", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.0.18"],\
+            ["@types/a-big-triangle", "npm:1.0.1"],\
+            ["@types/gl-shader", "npm:4.2.2"],\
             ["@typescript-eslint/eslint-plugin", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:5.61.0"],\
             ["@typescript-eslint/parser", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:5.61.0"],\
             ["@vanilla-extract/css", "npm:1.12.0"],\
             ["@vanilla-extract/vite-plugin", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:3.8.2"],\
+            ["a-big-triangle", "npm:1.0.3"],\
             ["eslint", "npm:8.44.0"],\
             ["eslint-plugin-solid", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:0.12.1"],\
             ["gl-shader", "npm:4.3.1"],\
@@ -48,6 +51,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["solid-js", "npm:1.7.7"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
             ["vite", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:4.4.2"],\
+            ["vite-plugin-glsl", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:1.1.2"],\
             ["vite-plugin-glslify", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.0.2"],\
             ["vite-plugin-solid", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.7.0"]\
           ],\
@@ -1319,6 +1323,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["picomatch", "npm:2.3.1"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:5.0.2", {\
+          "packageLocation": "./.yarn/cache/@rollup-pluginutils-npm-5.0.2-6aa9d0ddd4-edea15e543.zip/node_modules/@rollup/pluginutils/",\
+          "packageDependencies": [\
+            ["@rollup/pluginutils", "npm:5.0.2"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:0421cab8796026181a8f28824ea428b471e57fbd9803cb87fdde4638d719c306e272f7855b76659e8cef5ebc661c1e7bf264315113e580e42b6c416106a28edc#npm:5.0.2", {\
+          "packageLocation": "./.yarn/__virtual__/@rollup-pluginutils-virtual-76ab4bc62c/0/cache/@rollup-pluginutils-npm-5.0.2-6aa9d0ddd4-edea15e543.zip/node_modules/@rollup/pluginutils/",\
+          "packageDependencies": [\
+            ["@rollup/pluginutils", "virtual:0421cab8796026181a8f28824ea428b471e57fbd9803cb87fdde4638d719c306e272f7855b76659e8cef5ebc661c1e7bf264315113e580e42b6c416106a28edc#npm:5.0.2"],\
+            ["@types/estree", "npm:1.0.1"],\
+            ["@types/rollup", null],\
+            ["estree-walker", "npm:2.0.2"],\
+            ["picomatch", "npm:2.3.1"],\
+            ["rollup", null]\
+          ],\
+          "packagePeers": [\
+            "@types/rollup",\
+            "rollup"\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@solid-primitives/event-listener", [\
@@ -1515,6 +1542,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/a-big-triangle", [\
+        ["npm:1.0.1", {\
+          "packageLocation": "./.yarn/cache/@types-a-big-triangle-npm-1.0.1-8e81099c94-86e60ae93c.zip/node_modules/@types/a-big-triangle/",\
+          "packageDependencies": [\
+            ["@types/a-big-triangle", "npm:1.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/babel__core", [\
         ["npm:7.20.1", {\
           "packageLocation": "./.yarn/cache/@types-babel__core-npm-7.20.1-f44761b6b6-9fcd9691a3.zip/node_modules/@types/babel__core/",\
@@ -1556,6 +1592,24 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@types/babel__traverse", "npm:7.20.1"],\
             ["@babel/types", "npm:7.22.5"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/estree", [\
+        ["npm:1.0.1", {\
+          "packageLocation": "./.yarn/cache/@types-estree-npm-1.0.1-4c9469c165-e9aa175eac.zip/node_modules/@types/estree/",\
+          "packageDependencies": [\
+            ["@types/estree", "npm:1.0.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/gl-shader", [\
+        ["npm:4.2.2", {\
+          "packageLocation": "./.yarn/cache/@types-gl-shader-npm-4.2.2-05c89caae0-99f734570d.zip/node_modules/@types/gl-shader/",\
+          "packageDependencies": [\
+            ["@types/gl-shader", "npm:4.2.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1871,6 +1925,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [\
             "@types/vite",\
             "vite"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["a-big-triangle", [\
+        ["npm:1.0.3", {\
+          "packageLocation": "./.yarn/cache/a-big-triangle-npm-1.0.3-bb5ca870e6-977ddc45a4.zip/node_modules/a-big-triangle/",\
+          "packageDependencies": [\
+            ["a-big-triangle", "npm:1.0.3"],\
+            ["gl-buffer", "npm:2.1.2"],\
+            ["gl-vao", "npm:1.3.0"],\
+            ["weak-map", "npm:1.0.8"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3349,6 +3415,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["gl-buffer", [\
+        ["npm:2.1.2", {\
+          "packageLocation": "./.yarn/cache/gl-buffer-npm-2.1.2-97b265b3ad-60774ef7ff.zip/node_modules/gl-buffer/",\
+          "packageDependencies": [\
+            ["gl-buffer", "npm:2.1.2"],\
+            ["ndarray", "npm:1.0.19"],\
+            ["ndarray-ops", "npm:1.2.2"],\
+            ["typedarray-pool", "npm:1.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["gl-constants", [\
         ["npm:1.0.0", {\
           "packageLocation": "./.yarn/cache/gl-constants-npm-1.0.0-2969c85171-48da1812c4.zip/node_modules/gl-constants/",\
@@ -3390,6 +3468,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ndarray", "npm:1.0.19"],\
             ["ndarray-ops", "npm:1.2.2"],\
             ["typedarray-pool", "npm:1.2.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["gl-vao", [\
+        ["npm:1.3.0", {\
+          "packageLocation": "./.yarn/cache/gl-vao-npm-1.3.0-19cb6cf7b1-4b4683a06b.zip/node_modules/gl-vao/",\
+          "packageDependencies": [\
+            ["gl-vao", "npm:1.3.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5070,10 +5157,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@motionone/solid", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:10.16.2"],\
             ["@motionone/types", "npm:10.15.1"],\
             ["@solid-primitives/resize-observer", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.0.18"],\
+            ["@types/a-big-triangle", "npm:1.0.1"],\
+            ["@types/gl-shader", "npm:4.2.2"],\
             ["@typescript-eslint/eslint-plugin", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:5.61.0"],\
             ["@typescript-eslint/parser", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:5.61.0"],\
             ["@vanilla-extract/css", "npm:1.12.0"],\
             ["@vanilla-extract/vite-plugin", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:3.8.2"],\
+            ["a-big-triangle", "npm:1.0.3"],\
             ["eslint", "npm:8.44.0"],\
             ["eslint-plugin-solid", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:0.12.1"],\
             ["gl-shader", "npm:4.3.1"],\
@@ -5087,6 +5177,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["solid-js", "npm:1.7.7"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
             ["vite", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:4.4.2"],\
+            ["vite-plugin-glsl", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:1.1.2"],\
             ["vite-plugin-glslify", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.0.2"],\
             ["vite-plugin-solid", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.7.0"]\
           ],\
@@ -6130,6 +6221,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["vite-plugin-glsl", [\
+        ["npm:1.1.2", {\
+          "packageLocation": "./.yarn/cache/vite-plugin-glsl-npm-1.1.2-0419b62c65-8b77944ce9.zip/node_modules/vite-plugin-glsl/",\
+          "packageDependencies": [\
+            ["vite-plugin-glsl", "npm:1.1.2"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:1.1.2", {\
+          "packageLocation": "./.yarn/__virtual__/vite-plugin-glsl-virtual-0421cab879/0/cache/vite-plugin-glsl-npm-1.1.2-0419b62c65-8b77944ce9.zip/node_modules/vite-plugin-glsl/",\
+          "packageDependencies": [\
+            ["vite-plugin-glsl", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:1.1.2"],\
+            ["@rollup/pluginutils", "virtual:0421cab8796026181a8f28824ea428b471e57fbd9803cb87fdde4638d719c306e272f7855b76659e8cef5ebc661c1e7bf264315113e580e42b6c416106a28edc#npm:5.0.2"],\
+            ["@types/vite", null],\
+            ["vite", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:4.4.2"]\
+          ],\
+          "packagePeers": [\
+            "@types/vite",\
+            "vite"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["vite-plugin-glslify", [\
         ["npm:2.0.2", {\
           "packageLocation": "./.yarn/cache/vite-plugin-glslify-npm-2.0.2-c21d96c231-3e712e89e6.zip/node_modules/vite-plugin-glslify/",\
@@ -6207,6 +6321,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packagePeers": [\
             "@types/vite",\
             "vite"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["weak-map", [\
+        ["npm:1.0.8", {\
+          "packageLocation": "./.yarn/cache/weak-map-npm-1.0.8-752d38a0d7-ce030b3c6b.zip/node_modules/weak-map/",\
+          "packageDependencies": [\
+            ["weak-map", "npm:1.0.8"]\
           ],\
           "linkType": "HARD"\
         }]\

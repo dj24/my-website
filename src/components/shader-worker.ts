@@ -1,16 +1,10 @@
-import {
-  bindRenderTexture,
-  drawScene,
-  getProgramInfo,
-  ShaderFloat,
-  ShaderVec3,
-} from "../util/webgl.ts";
+import createShader from 'gl-shader';
+import triangle from 'a-big-triangle';
 import frag from "../shaders/hero.frag";
 import vert from "../shaders/hero.vert";
 
 type ShaderSetupPayload = {
   canvas: OffscreenCanvas;
-  container: HTMLDivElement;
 };
 
 type ShaderAnimatePayload = {
@@ -37,19 +31,19 @@ type ShaderMessage =
 
 let animationFrame: number;
 let gl: WebGL2RenderingContext | null;
-let container: HTMLDivElement | null;
+let shader: any;
 
 const handleSetup = (payload: ShaderSetupPayload) => {
   gl = payload.canvas.getContext("webgl2");
-  container = payload.container;
   if (!gl) {
     throw new Error("No WebGl2 support on device");
   }
+  shader = createShader(gl, vert, frag);
 };
+
+
+
 const handleAnimate = ({
-  floatNames,
-  vec3Names,
-  textureNames,
   rotation,
   width,
   height,
@@ -57,36 +51,19 @@ const handleAnimate = ({
   if (!gl) {
     throw new Error("WebGl2 context not setup");
   }
-  if (!container) {
-    throw new Error("Container not set");
-  }
-  gl.canvas.width = container.width;
-  gl.canvas.height = container.height;
-  cancelAnimationFrame(animationFrame);
-  const programInfo = getProgramInfo(
-    gl,
-    frag,
-    vert,
-    floatNames.concat(vec3Names).concat(textureNames),
-  );
-  bindRenderTexture(gl, gl.canvas.width, gl.canvas.height);
-  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-
-  const main = (time: number) => {
-    if (!gl) {
+  gl.viewport(0, 0, width, height);
+  shader.bind()
+  shader.uniforms.resolution = [ width, height, 1.0 ]
+  shader.uniforms.rotation = rotation;
+  const render = (time: number) => {
+    if(!gl){
       return;
     }
-    animationFrame = requestAnimationFrame(main);
-    const vec3s: ShaderVec3[] = [
-      { name: "resolution", value: [gl.canvas.width, gl.canvas.height, 1.0] },
-    ];
-    const floats: ShaderFloat[] = [
-      { name: "rotation", value: rotation },
-      { name: "time", value: time },
-    ];
-    drawScene(gl, programInfo, vec3s, floats);
-  };
-  animationFrame = requestAnimationFrame(main);
+    shader.uniforms.time = time;
+    triangle(gl)
+    animationFrame = requestAnimationFrame(render);
+  }
+  animationFrame = requestAnimationFrame(render);
 };
 
 const handleCancel = () => {

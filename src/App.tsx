@@ -1,4 +1,3 @@
-// @ts-ignore
 import { Motion } from "@motionone/solid";
 import { animate, stagger, timeline } from "motion";
 import {
@@ -19,9 +18,9 @@ import {
   For,
   onMount,
 } from "solid-js";
-import { defaultAnimation, easings } from "./config/animation.ts";
-import { Shader } from "./components/shader.tsx";
-import SmoothScroll from "./components/smooth-scroll.tsx";
+import { defaultAnimation, easings } from "./config/animation";
+import { Shader } from "./components/shader";
+import SmoothScroll from "./components/smooth-scroll";
 
 const AnimatedLetters = (props: { children: string }) => {
   const id = createUniqueId();

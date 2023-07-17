@@ -14,8 +14,8 @@ uniform float rotation;
 uniform vec3 resolution;
 
 #define BACKGROUND_COLOUR vec3(0.98, 0.929, 0.804)
-#define MAX_RAY_DISTANCE 200
-#define AA 2
+#define MAX_RAY_DISTANCE 50
+#define AA 1
 #define ORTHO_SIZE 150.0
 
 vec3 getColour(float hue){
