@@ -25,6 +25,7 @@
   "devDependencies": {
     "@types/a-big-triangle": "^1.0.1",
     "@types/gl-shader": "^4.2.2",
+    "@types/gl-texture2d": "^2.1.4",
     "@typescript-eslint/eslint-plugin": "latest",
     "@typescript-eslint/parser": "latest",
     "@vanilla-extract/vite-plugin": "^3.8.2",

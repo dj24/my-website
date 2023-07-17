@@ -1197,10 +1197,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/gl-texture2d@npm:^2.1.4":
+  version: 2.1.4
+  resolution: "@types/gl-texture2d@npm:2.1.4"
+  dependencies:
+    "@types/ndarray": "*"
+  checksum: 2f0c77f256e64e0aff5cba0340e16b2678931e40bdc4b81967e89d32aabd25dab4cf32bc878d573bfeaffef6e767b203b8df099f3e97d5eb3f1b818a4dcb713b
+  languageName: node
+  linkType: hard
+
 "@types/json-schema@npm:^7.0.9":
   version: 7.0.12
   resolution: "@types/json-schema@npm:7.0.12"
   checksum: 00239e97234eeb5ceefb0c1875d98ade6e922bfec39dd365ec6bd360b5c2f825e612ac4f6e5f1d13601b8b30f378f15e6faa805a3a732f4a1bbe61915163d293
+  languageName: node
+  linkType: hard
+
+"@types/ndarray@npm:*":
+  version: 1.0.11
+  resolution: "@types/ndarray@npm:1.0.11"
+  checksum: b2f379d18da9f53ba776476be3f566ef55f06578db65e110b6b4590cd9915c5992129afca0a334571666079f881c92ad475f05b8e012afda31071a1d7a1ccd00
   languageName: node
   linkType: hard
 
@@ -4339,6 +4355,7 @@ __metadata:
     "@solid-primitives/resize-observer": ^2.0.18
     "@types/a-big-triangle": ^1.0.1
     "@types/gl-shader": ^4.2.2
+    "@types/gl-texture2d": ^2.1.4
     "@typescript-eslint/eslint-plugin": latest
     "@typescript-eslint/parser": latest
     "@vanilla-extract/css": ^1.12.0

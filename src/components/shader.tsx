@@ -5,12 +5,8 @@ import { createResizeObserver } from "@solid-primitives/resize-observer";
 
 export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
   let canvas!: HTMLCanvasElement;
-  let container!: HTMLDivElement;
   const shaderWorker = new ShaderWorker();
   const [rotation, setRotation] = createSignal(0);
-  const floatNames = ["time", "rotation"];
-  const vec3Names = ["resolution"];
-  const textureNames = ["noise"];
 
   scroll(
     ({ y }) => {
@@ -28,15 +24,14 @@ export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
       [offscreen],
     );
     createResizeObserver(canvas, ({ width, height }) => {
-      const workerPayload = {
-        width: width,
-        height: height,
-        rotation: rotation(),
-        floatNames,
-        vec3Names,
-        textureNames,
-      };
-      shaderWorker.postMessage({ action: "animate", payload: workerPayload });
+      shaderWorker.postMessage({
+        action: "animate",
+        payload: {
+          width: width / 2,
+          height: height / 2,
+          rotation: rotation(),
+        },
+      });
     });
 
     onCleanup(() => {
@@ -44,9 +39,5 @@ export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
     });
   });
 
-  return (
-    <div ref={container}>
-      <canvas ref={canvas} width={1000} height={1000} {...props} />
-    </div>
-  );
+  return <canvas ref={canvas} {...props} />;
 };

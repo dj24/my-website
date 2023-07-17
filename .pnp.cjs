@@ -33,6 +33,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@solid-primitives/resize-observer", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.0.18"],\
             ["@types/a-big-triangle", "npm:1.0.1"],\
             ["@types/gl-shader", "npm:4.2.2"],\
+            ["@types/gl-texture2d", "npm:2.1.4"],\
             ["@typescript-eslint/eslint-plugin", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:5.61.0"],\
             ["@typescript-eslint/parser", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:5.61.0"],\
             ["@vanilla-extract/css", "npm:1.12.0"],\
@@ -1614,11 +1615,30 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@types/gl-texture2d", [\
+        ["npm:2.1.4", {\
+          "packageLocation": "./.yarn/cache/@types-gl-texture2d-npm-2.1.4-8dc37e06da-2f0c77f256.zip/node_modules/@types/gl-texture2d/",\
+          "packageDependencies": [\
+            ["@types/gl-texture2d", "npm:2.1.4"],\
+            ["@types/ndarray", "npm:1.0.11"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@types/json-schema", [\
         ["npm:7.0.12", {\
           "packageLocation": "./.yarn/cache/@types-json-schema-npm-7.0.12-f05cfc0e99-00239e9723.zip/node_modules/@types/json-schema/",\
           "packageDependencies": [\
             ["@types/json-schema", "npm:7.0.12"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/ndarray", [\
+        ["npm:1.0.11", {\
+          "packageLocation": "./.yarn/cache/@types-ndarray-npm-1.0.11-0bb4af065a-b2f379d18d.zip/node_modules/@types/ndarray/",\
+          "packageDependencies": [\
+            ["@types/ndarray", "npm:1.0.11"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -5159,6 +5179,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@solid-primitives/resize-observer", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:2.0.18"],\
             ["@types/a-big-triangle", "npm:1.0.1"],\
             ["@types/gl-shader", "npm:4.2.2"],\
+            ["@types/gl-texture2d", "npm:2.1.4"],\
             ["@typescript-eslint/eslint-plugin", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:5.61.0"],\
             ["@typescript-eslint/parser", "virtual:3786d9363fd0a547cdeba13dbbd7739095de182e2f1aa37c74f8398253205a5b62b2735c6799681aabf1f7716a4d0562fe89843678033b5bdce0191960fb23a9#npm:5.61.0"],\
             ["@vanilla-extract/css", "npm:1.12.0"],\
