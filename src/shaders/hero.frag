@@ -3,7 +3,9 @@ precision mediump float;
 #pragma glslify: sdBox = require(./includes/sdf/box)
 #pragma glslify: sdCappedCylinder = require(./includes/sdf/capped-cylinder)
 #pragma glslify: sdArch = require(./includes/sdf/arch)
+#pragma glslify: sdSphere = require(./includes/sdf/sphere)
 #pragma glslify: opUnion = require(./includes/operations/union)
+#pragma glslify: opSmoothUnion = require(./includes/operations/smooth-union)
 #pragma glslify: opSubtraction = require(./includes/operations/subtraction)
 #pragma glslify: hsv2rgb = require(./includes/colour/hsv2rgb)
 
@@ -12,8 +14,8 @@ uniform float rotation;
 uniform vec3 resolution;
 
 #define BACKGROUND_COLOUR vec3(0.98, 0.929, 0.804)
-#define MAX_RAY_DISTANCE 50
-#define AA 1
+#define MAX_RAY_DISTANCE 200
+#define AA 2
 #define ORTHO_SIZE 150.0
 
 vec3 getColour(float hue){
@@ -22,8 +24,13 @@ vec3 getColour(float hue){
 
 vec2 map(vec3 pos)
 {
-    vec3 spherePos = pos + vec3(0.0, (sin(time * 0.001) - 1.0) * 10.0, 0.0);
-    vec2 outerBox = vec2(sdBox(pos + vec3(0.0,90.0,0.0), vec3(20.0, 100.0, 95.0)),0.3);
+    float sinTime = sin(time * 0.001) - 1.0;
+    vec3 spherePos = pos + vec3(0.0, sinTime * 10.0, 0.0);
+    
+    float outerBoxColour = 0.3;
+    float sphereColour = sinTime * 0.25;
+    
+    vec2 outerBox = vec2(sdBox(pos + vec3(0.0,90.0,0.0), vec3(20.0, 100.0, 95.0)),outerBoxColour);
     
     float archY = 22.0;
     vec3 archSize = vec3(21.0, 100.0, 22.0);
@@ -31,11 +38,13 @@ vec2 map(vec3 pos)
     vec2 arch1 = vec2(sdArch(pos + vec3(0.0,archY,0.0), archSize), 0.0);
     vec2 arch2 = vec2(sdArch(pos + vec3(0.0,archY,60.0), archSize), 0.0);
     vec2 arch3 = vec2(sdArch(pos + vec3(0.0,archY,-60.0), archSize), 0.0);
+    vec2 sphere = vec2(sdSphere(spherePos, 20.0), sphereColour);
     
     vec2 res = outerBox;
     res = opSubtraction(arch1,res);
     res = opSubtraction(arch2,res);
     res = opSubtraction(arch3,res);
+    res = opSmoothUnion(res, sphere, 16.0);
     return res;
 } 
 

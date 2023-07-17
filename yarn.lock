@@ -1025,6 +1025,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@solid-primitives/event-listener@npm:^2.2.13":
+  version: 2.2.13
+  resolution: "@solid-primitives/event-listener@npm:2.2.13"
+  dependencies:
+    "@solid-primitives/utils": ^6.2.0
+  peerDependencies:
+    solid-js: ^1.6.12
+  checksum: c4af9325be40ef43eb6753fa414436b078c68e5aa7b49bc8c5f974b250ba443de5a12f26c9e71202e87ed8aeafcbbb4f780ed2d3c9753f5262b79acaa5bbdd4c
+  languageName: node
+  linkType: hard
+
 "@solid-primitives/props@npm:^3.1.1":
   version: 3.1.6
   resolution: "@solid-primitives/props@npm:3.1.6"
@@ -1044,6 +1055,42 @@ __metadata:
   peerDependencies:
     solid-js: ^1.6.12
   checksum: 2ce4188cd7c4f1bd091678a510f2af1afe53b4404558214491ecf8af0c6168a01dd77ee69b056f7814308f16dfae58cc9ec0c652e5d4e3721854ff0e6b175c38
+  languageName: node
+  linkType: hard
+
+"@solid-primitives/resize-observer@npm:^2.0.18":
+  version: 2.0.18
+  resolution: "@solid-primitives/resize-observer@npm:2.0.18"
+  dependencies:
+    "@solid-primitives/event-listener": ^2.2.13
+    "@solid-primitives/rootless": ^1.4.1
+    "@solid-primitives/static-store": ^0.0.4
+    "@solid-primitives/utils": ^6.2.0
+  peerDependencies:
+    solid-js: ^1.6.12
+  checksum: 6cb89754a4697cb5ad5f222a35edabc46c0f23b7e3b27e06e43311865ec164e8bb604da7d92256b1e2f94d0574a56559105e44b71d5ece27e4896b8fe215e5aa
+  languageName: node
+  linkType: hard
+
+"@solid-primitives/rootless@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "@solid-primitives/rootless@npm:1.4.1"
+  dependencies:
+    "@solid-primitives/utils": ^6.2.0
+  peerDependencies:
+    solid-js: ^1.6.12
+  checksum: 8b31ec4ee7a5dc87b00256613f0c6082bb5d5457a2fe87f159ad4d6f12e2a2a2867af3eb867acec20ff19aec8c1f765254d8f0891b33c69ecb65479935a79496
+  languageName: node
+  linkType: hard
+
+"@solid-primitives/static-store@npm:^0.0.4":
+  version: 0.0.4
+  resolution: "@solid-primitives/static-store@npm:0.0.4"
+  dependencies:
+    "@solid-primitives/utils": ^6.2.0
+  peerDependencies:
+    solid-js: ^1.6.12
+  checksum: a26387c077e4779007349a05ac39838c0b973de8c7fbaa091ac856952fdccda3a0b3ad5849c956697385e60538461fb9a5f7d3a7475993353f12a1bd78f044c1
   languageName: node
   linkType: hard
 
@@ -1352,6 +1399,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"add-line-numbers@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "add-line-numbers@npm:1.0.1"
+  dependencies:
+    pad-left: ^1.0.2
+  checksum: 9a7efb310604a5fd532804c8b1cd6f4dc824f154c22ac7d4c22c16bd2ca45ac229c34185075963b8a6478414444dd9fbf7264af409f4651f06fa956c472a093b
+  languageName: node
+  linkType: hard
+
 "agent-base@npm:6, agent-base@npm:^6.0.2":
   version: 6.0.2
   resolution: "agent-base@npm:6.0.2"
@@ -1515,6 +1571,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"atob-lite@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "atob-lite@npm:1.0.0"
+  checksum: d4c2863528c8ef054355fc397ed4898ec8d6e8a1f0f13250cbdf2665e624addd766bf3465374b47a45cdfdcca2b0178496763e80ae5936784baf5c9849efb35f
+  languageName: node
+  linkType: hard
+
 "available-typed-arrays@npm:^1.0.5":
   version: 1.0.5
   resolution: "available-typed-arrays@npm:1.0.5"
@@ -1552,6 +1615,13 @@ __metadata:
   version: 1.0.2
   resolution: "balanced-match@npm:1.0.2"
   checksum: 9706c088a283058a8a99e0bf91b0a2f75497f185980d9ffa8b304de1d9e58ebda7c72c07ebf01dadedaac5b2907b2c6f566f660d62bd336c3468e960403b9d65
+  languageName: node
+  linkType: hard
+
+"bit-twiddle@npm:^1.0.0":
+  version: 1.0.2
+  resolution: "bit-twiddle@npm:1.0.2"
+  checksum: 2f97b47d755efac7bae5f49c2eb0929867dad2921a853a4507466b4fa5c5b97803fdf8b729ca56da35934888f50730888b8137614e9974b783f1023da908a1ea
   languageName: node
   linkType: hard
 
@@ -1822,6 +1892,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cwise-compiler@npm:^1.0.0":
+  version: 1.1.3
+  resolution: "cwise-compiler@npm:1.1.3"
+  dependencies:
+    uniq: ^1.0.0
+  checksum: 6c8ed75ad5472f738411e3388a0d8dbc8d5e25b8e6bb2a2c38d275e1dc94d53120f87523f703a21a265e11ee7839eb2bb98a48eee409f663866e84ea06cf992f
+  languageName: node
+  linkType: hard
+
 "debug@npm:4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
@@ -1894,6 +1973,13 @@ __metadata:
   dependencies:
     esutils: ^2.0.2
   checksum: fd7673ca77fe26cd5cba38d816bc72d641f500f1f9b25b83e8ce28827fe2da7ad583a8da26ab6af85f834138cf8dae9f69b0cd6ab925f52ddab1754db44d99ce
+  languageName: node
+  linkType: hard
+
+"dup@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "dup@npm:1.0.0"
+  checksum: 1abda5b5b0b85f7ed1fef0fbe68e426c0951b0b9c0daea264d0e2fd844d6cc644e838faefc4e7db5385896a244e1284bfe3d3f6b4e673f37aac5f58f61970e36
   languageName: node
   linkType: hard
 
@@ -2660,6 +2746,46 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gl-constants@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "gl-constants@npm:1.0.0"
+  checksum: 48da1812c4f05bc05fe7f61ff10a2c034e62b43301ab6ab4bc51110171a1f9ebd5f7cf637f1a86e96da88c497f02419b3de34c834d069efd8525bb122184352c
+  languageName: node
+  linkType: hard
+
+"gl-format-compiler-error@npm:^1.0.2":
+  version: 1.0.3
+  resolution: "gl-format-compiler-error@npm:1.0.3"
+  dependencies:
+    add-line-numbers: ^1.0.1
+    gl-constants: ^1.0.0
+    glsl-shader-name: ^1.0.0
+    sprintf-js: ^1.0.3
+  checksum: 900ed87143f9252e0f9d0c2c13d13874c45496033f31f7bb8720322b2b24dd041f422deb929a40fff326e399d49dc8c2c71637fbefbb15235dfe8889db82729b
+  languageName: node
+  linkType: hard
+
+"gl-shader@npm:^4.3.1":
+  version: 4.3.1
+  resolution: "gl-shader@npm:4.3.1"
+  dependencies:
+    gl-format-compiler-error: ^1.0.2
+    weakmap-shim: ^1.1.0
+  checksum: 62cd2910a493d4d5fa844471584381a5171104ad41e71bcc2e2aea20a41c27d49a5419d52e3c49c0bf85b26eb3c4a81423f5cf087777a934b3157b7d7f9461c4
+  languageName: node
+  linkType: hard
+
+"gl-texture2d@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "gl-texture2d@npm:2.1.0"
+  dependencies:
+    ndarray: ^1.0.15
+    ndarray-ops: ^1.2.2
+    typedarray-pool: ^1.1.0
+  checksum: d3477786142cae66fec850bc44efd9ddc2f4147dfddc20f3499dc265d52c405b124f62ca7c6d0274b83bb88a13786016bc6f749a28d95946a6c0fc6e9548bb71
+  languageName: node
+  linkType: hard
+
 "glob-parent@npm:^5.1.2":
   version: 5.1.2
   resolution: "glob-parent@npm:5.1.2"
@@ -2785,6 +2911,16 @@ __metadata:
     resolve: ^0.6.1
     xtend: ^2.1.2
   checksum: 8bc83f4c56c06d771761c32042fff8fed60f4bcc320d5fc3ec86cf115eb3c0bb5bacf3ca5f80cb88133399734d02c65788845bca9eb90244e08c41e98ddb0275
+  languageName: node
+  linkType: hard
+
+"glsl-shader-name@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "glsl-shader-name@npm:1.0.0"
+  dependencies:
+    atob-lite: ^1.0.0
+    glsl-tokenizer: ^2.0.2
+  checksum: 326d15d43e27567732b9dff3a4a57fc9c843d17c326009dec74260767d6910c9482baeeecdf1f89c19e782ee668aacb1c1bef462ee82c01ad567792a3cf5379c
   languageName: node
   linkType: hard
 
@@ -3151,6 +3287,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"iota-array@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "iota-array@npm:1.0.0"
+  checksum: e537c236d95e835f73dc59d725bd3eee9a722a2e7b596ff1cc2a91dd9781f82318040321d5839f1e1d4ace1411134200d443bb22dc2ab0ee4da7e03a4f74b73d
+  languageName: node
+  linkType: hard
+
 "ip@npm:^2.0.0":
   version: 2.0.0
   resolution: "ip@npm:2.0.0"
@@ -3185,6 +3328,13 @@ __metadata:
     call-bind: ^1.0.2
     has-tostringtag: ^1.0.0
   checksum: c03b23dbaacadc18940defb12c1c0e3aaece7553ef58b162a0f6bba0c2a7e1551b59f365b91e00d2dbac0522392d576ef322628cb1d036a0fe51eb466db67222
+  languageName: node
+  linkType: hard
+
+"is-buffer@npm:^1.0.2":
+  version: 1.1.6
+  resolution: "is-buffer@npm:1.1.6"
+  checksum: 4a186d995d8bbf9153b4bd9ff9fd04ae75068fe695d29025d25e592d9488911eeece84eefbd8fa41b8ddcc0711058a71d4c466dcf6f1f6e1d83830052d8ca707
   languageName: node
   linkType: hard
 
@@ -3825,6 +3975,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ndarray-ops@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "ndarray-ops@npm:1.2.2"
+  dependencies:
+    cwise-compiler: ^1.0.0
+  checksum: 6d4f81bd37ef3b2aeec64eb3cfd2d094d1ac23e326610f67a4ba72f053dd61c87d1955b067d59584e990bd055c649a2b0c7277d6c013d02f84d10e57fd39713f
+  languageName: node
+  linkType: hard
+
+"ndarray@npm:^1.0.15":
+  version: 1.0.19
+  resolution: "ndarray@npm:1.0.19"
+  dependencies:
+    iota-array: ^1.0.0
+    is-buffer: ^1.0.2
+  checksum: 2f8ac89f0bcfc4b831677909d1326971e35419162811a74ddb5dfab2cb6204b8625a11cd5dcff60b0fa10071809af7dc367e6191703507f8cdf23856ccce5b0c
+  languageName: node
+  linkType: hard
+
 "negotiator@npm:^0.6.3":
   version: 0.6.3
   resolution: "negotiator@npm:0.6.3"
@@ -4000,6 +4169,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pad-left@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "pad-left@npm:1.0.2"
+  dependencies:
+    repeat-string: ^1.3.0
+  checksum: 6d303cb011e0c3dbc7cdc14d29eeea069d7db8014918669e68cbc8c93e29655230eccb916eb774459a63567be8f3f8950a45f50fe252a121f742b3dbf7356fd3
+  languageName: node
+  linkType: hard
+
 "parent-module@npm:^1.0.0":
   version: 1.0.1
   resolution: "parent-module@npm:1.0.1"
@@ -4092,12 +4270,15 @@ __metadata:
   dependencies:
     "@motionone/solid": ^10.16.2
     "@motionone/types": ^10.15.1
+    "@solid-primitives/resize-observer": ^2.0.18
     "@typescript-eslint/eslint-plugin": latest
     "@typescript-eslint/parser": latest
     "@vanilla-extract/css": ^1.12.0
     "@vanilla-extract/vite-plugin": ^3.8.2
     eslint: ^8.44.0
     eslint-plugin-solid: ^0.12.1
+    gl-shader: ^4.3.1
+    gl-texture2d: ^2.1.0
     glsl-easings: ^1.0.0
     glsl-fxaa: ^3.0.0
     glsl-noise: ^0.0.0
@@ -4248,6 +4429,13 @@ __metadata:
     define-properties: ^1.2.0
     functions-have-names: ^1.2.3
   checksum: c541687cdbdfff1b9a07f6e44879f82c66bbf07665f9a7544c5fd16acdb3ec8d1436caab01662d2fbcad403f3499d49ab0b77fbc7ef29ef961d98cc4bc9755b4
+  languageName: node
+  linkType: hard
+
+"repeat-string@npm:^1.3.0":
+  version: 1.6.1
+  resolution: "repeat-string@npm:1.6.1"
+  checksum: 1b809fc6db97decdc68f5b12c4d1a671c8e3f65ec4a40c238bc5200e44e85bcc52a54f78268ab9c29fcf5fe4f1343e805420056d1f30fa9a9ee4c2d93e3cc6c0
   languageName: node
   linkType: hard
 
@@ -4547,6 +4735,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"sprintf-js@npm:^1.0.3":
+  version: 1.1.2
+  resolution: "sprintf-js@npm:1.1.2"
+  checksum: d4bb46464632b335e5faed381bd331157e0af64915a98ede833452663bc672823db49d7531c32d58798e85236581fb7342fd0270531ffc8f914e186187bf1c90
+  languageName: node
+  linkType: hard
+
 "ssri@npm:^10.0.0":
   version: 10.0.4
   resolution: "ssri@npm:10.0.4"
@@ -4836,6 +5031,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"typedarray-pool@npm:^1.1.0":
+  version: 1.2.0
+  resolution: "typedarray-pool@npm:1.2.0"
+  dependencies:
+    bit-twiddle: ^1.0.0
+    dup: ^1.0.0
+  checksum: dbba84b83f51052212fc61bb9ca802793c225b1c37eba3c9ddcadba486ba95c5346b37c176a7e6508fafdb27fef8059c4d8365e7e4630e374bcd824974ad192a
+  languageName: node
+  linkType: hard
+
 "typedarray@npm:^0.0.6":
   version: 0.0.6
   resolution: "typedarray@npm:0.0.6"
@@ -4879,6 +5084,13 @@ __metadata:
     has-symbols: ^1.0.3
     which-boxed-primitive: ^1.0.2
   checksum: b7a1cf5862b5e4b5deb091672ffa579aa274f648410009c81cca63fed3b62b610c4f3b773f912ce545bb4e31edc3138975b5bc777fc6e4817dca51affb6380e9
+  languageName: node
+  linkType: hard
+
+"uniq@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "uniq@npm:1.0.1"
+  checksum: 8206535f83745ea83f9da7035f3b983fd6ed5e35b8ed7745441944e4065b616bc67cf0d0a23a86b40ee0074426f0607f0a138f9b78e124eb6a7a6a6966055709
   languageName: node
   linkType: hard
 
@@ -5036,6 +5248,13 @@ __metadata:
     vite:
       optional: true
   checksum: 4add282ffec4f27388aa75df2cd7db9a674d51bf9471907441ca23ff5ac70fc9540344dbf3a53af0aa53685f1d7b8c756da5f9749afe91aac66c82a25ade7821
+  languageName: node
+  linkType: hard
+
+"weakmap-shim@npm:^1.1.0":
+  version: 1.1.1
+  resolution: "weakmap-shim@npm:1.1.1"
+  checksum: 27669feb2a05d881211a298fafb1e771fd960a5e308b89a66db2902328f0afdb9c91524bd401d45700918baa84f082017c70cbd56a89ae37c18584c0f00ee0e6
   languageName: node
   linkType: hard
 
