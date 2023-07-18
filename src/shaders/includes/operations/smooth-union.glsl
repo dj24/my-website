@@ -4,4 +4,3 @@ vec2 opSmoothUnion( vec2 d1, vec2 d2, float k ) {
     float m = mix( d2.y, d1.y, h );
     return vec2(t,m);
 }
-#pragma glslify: export(opSmoothUnion)

@@ -1,10 +1,10 @@
 import { defineConfig } from "vite";
 import solid from "vite-plugin-solid";
 import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
-import { glslify } from 'vite-plugin-glslify';
+import glsl from 'vite-plugin-glsl';
 
 export default defineConfig({
-  plugins: [solid(), vanillaExtractPlugin(), glslify()],
+  plugins: [solid(), vanillaExtractPlugin(), glsl()],
   base: "/my-website/",
   define: {
     global: {},

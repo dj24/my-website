@@ -1,13 +1,12 @@
 precision mediump float;
 
-#pragma glslify: sdBox = require(./includes/sdf/box)
-#pragma glslify: sdCappedCylinder = require(./includes/sdf/capped-cylinder)
-#pragma glslify: sdArch = require(./includes/sdf/arch)
-#pragma glslify: sdSphere = require(./includes/sdf/sphere)
-#pragma glslify: opUnion = require(./includes/operations/union)
-#pragma glslify: opSmoothUnion = require(./includes/operations/smooth-union)
-#pragma glslify: opSubtraction = require(./includes/operations/subtraction)
-#pragma glslify: hsv2rgb = require(./includes/colour/hsv2rgb)
+#include ./includes/sdf/box
+#include ./includes/sdf/capped-cylinder
+#include ./includes/sdf/sphere
+#include ./includes/operations/union
+#include ./includes/operations/smooth-union
+#include ./includes/operations/subtraction
+#include ./includes/colour/hsv2rgb
 
 uniform float time;
 uniform float rotation;
@@ -20,6 +19,12 @@ uniform vec3 resolution;
 
 vec3 getColour(float hue){
     return hsv2rgb(vec3(hue, 1.0, 1.0));
+}
+
+float sdArch ( vec3 p, vec3 size ){
+    float cylinder = sdCappedCylinder(p, size.x, size.z);
+    float box = sdBox(p + vec3(0.0, size.y, 0.0), size);
+    return opUnion(vec2(box, 0.0), vec2(cylinder, 0.0)).x;
 }
 
 vec2 map(vec3 pos)

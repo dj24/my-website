@@ -4,4 +4,3 @@ vec2 opSmoothSubtraction( vec2 d1, vec2 d2, float k ) {
       float m = d2.y;
       return vec2(t,m);
 }
-#pragma glslify: export(opSmoothSubtraction)
