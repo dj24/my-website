@@ -4,7 +4,7 @@ import { vanillaExtractPlugin } from "@vanilla-extract/vite-plugin";
 import glsl from 'vite-plugin-glsl';
 
 export default defineConfig({
-  plugins: [solid(), vanillaExtractPlugin(), glsl()],
+  plugins: [glsl(), solid(), vanillaExtractPlugin() ],
   base: "/my-website/",
   define: {
     global: {},
