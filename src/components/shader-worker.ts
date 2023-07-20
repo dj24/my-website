@@ -1,4 +1,5 @@
 import createShader from "gl-shader";
+import createTexture from 'gl-texture2d';
 import triangle from "a-big-triangle";
 import vert from '../shaders/hero.vert';
 import frag from '../shaders/hero.frag';
@@ -63,27 +64,62 @@ const loadTexture = async (gl: WebGL2RenderingContext, src: string): Promise<Web
   return texture;
 }
 
+
 const handleAnimate = async ({ rotation, width, height }: ShaderAnimatePayload) => {
   if (!gl) {
     throw new Error("WebGl2 context not setup");
   }
-  // const texture = createTexture(gl, [width, height]);
-  const texture = await loadTexture(gl, lowry);
-  // texture.bind();
-  fxaaShader.bind();
-  fxaaShader.uniforms.resolution = [width, height];
-  fxaaShader.uniforms.image = texture;
-  // shader.uniforms.rotation = rotation;
+
+  const lowryTexture = await loadTexture(gl, lowry);
+
   gl.canvas.width = width;
   gl.canvas.height = height;
   gl.viewport(0, 0, width, height);
+
+  const renderScene = (time: number) => {
+    if (!gl) {
+      return;
+    }
+    shader.bind();
+    shader.uniforms.resolution = [width, height,1];
+    shader.uniforms.rotation = rotation;
+    shader.uniforms.time = time;
+    triangle(gl as WebGLRenderingContext);
+  }
+
+  const applyFxaa = (texture: WebGLTexture, time: number) => {
+    if (!gl) {
+      return;
+    }
+    fxaaShader.bind();
+    fxaaShader.uniforms.resolution = [width, height];
+    fxaaShader.uniforms.image = texture;
+    fxaaShader.uniforms.time = time;
+    triangle(gl as WebGLRenderingContext);
+  }
+
+  const renderToTexture = (render: () => void) => {
+    if (!gl) {
+      return;
+    }
+    const targetTexture = createTexture(gl,[width,height]);
+    const fb = gl.createFramebuffer();
+    gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, targetTexture.handle, 0);
+    render();
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    return targetTexture;
+  }
 
   const render = (time: number) => {
     if (!gl) {
       return;
     }
-    fxaaShader.uniforms.time = time;
-    triangle(gl);
+
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    // const texture = renderToTexture(() => renderScene(time));
+    applyFxaa(lowryTexture, time);
+
     animationFrame = requestAnimationFrame(render);
   };
   animationFrame = requestAnimationFrame(render);

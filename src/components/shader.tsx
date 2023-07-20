@@ -27,8 +27,8 @@ export const Shader: Component<{ style: JSX.CSSProperties }> = (props) => {
       shaderWorker.postMessage({
         action: "animate",
         payload: {
-          width: width,
-          height: height,
+          width: width / 2,
+          height: height / 2,
           rotation: rotation(),
         },
       });
